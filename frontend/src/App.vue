@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style>
-#app {
+/* #app {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,5 +25,5 @@ export default {
   color: #2c3e50;
   background-color: grey;
   margin-top: 60px;
-}
+} */
 </style>
