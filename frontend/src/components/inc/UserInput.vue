@@ -1,6 +1,6 @@
 <template>
     <div class="main-container-input">
-        <label :for="name" :class="placeholder ?? null ">{{ name }}:</label>
+        <!-- <label :for="name" :class="placeholder ?? null ">{{ name }}:</label> -->
         <input :name="name" :type="type" :placeholder="placeholder"/>
     </div>
 </template>
