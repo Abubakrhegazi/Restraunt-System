@@ -1,6 +1,6 @@
 <template>
   <div class="Cashier">
-    <!-- Order Summary -->
+ 
     <div class="order-summary">
       <h2>Order Summary</h2>
       <div v-for="item in order" :key="item.name" class="order-item">
@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <!-- Food Menu -->
+   
     <div class="food-menu">
       <h2>Food Menu</h2>
       <div v-for="item in foodItems" :key="item.name" class="food-item">
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <!-- Payment Section -->
+   
     <div class="payment-section">
       <h2>Payment</h2>
       <div class="keypad">
@@ -47,10 +47,10 @@ export default {
         { name: "Cheese Burger", price: 8.05, image: "path-to-cheeseburger.jpg" },
         { name: "Chicken Curry Sandwich", price: 3.45, image: "path-to-curry.jpg" },
         { name: "Club Sandwich", price: 3.91, image: "path-to-club.jpg" },
-        // Add more items here
+   
       ],
       order: [],
-      taxRate: 0.13, // 13% tax rate
+      taxRate: 0.13, 
       keypadNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
     };
   },
