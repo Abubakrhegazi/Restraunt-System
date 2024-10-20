@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import UserInput from './inc/UserInput.vue';
+import UserInput from './inc/CustomInput.vue';
 
 export default {
   components: { UserInput },
