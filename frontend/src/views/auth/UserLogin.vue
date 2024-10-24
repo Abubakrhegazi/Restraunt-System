@@ -39,7 +39,19 @@ export default {
     const passwordError = ref(false);
 
     const submitForm = () => {
-      passwordError.value = password.value.length < 8;
+     
+      passwordError.value = false;
+
+      
+      if (password.value.length <= 8) {
+        passwordError.value = true;
+      }
+
+      
+      console.log('Password:', password.value);
+      console.log('Password Length:', password.value.length);
+
+     
       if (!passwordError.value) {
         console.log('Login Successful');
       }
@@ -54,7 +66,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather&display=swap');
