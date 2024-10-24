@@ -15,10 +15,9 @@
         placeholder="Password"
       />
       <p v-if="passwordError" class="error">Password must be at least 8 characters long.</p>
+      <p v-if="emailError" class="error">Invalid email address.</p>
       <button @click="submitForm">Login</button>
     </div>
-
-
     <footer class="footer">
       <p>Contact Us</p>
       <p>Email: support@mycompany.com</p>
@@ -37,22 +36,26 @@ export default {
     const email = ref('');
     const password = ref('');
     const passwordError = ref(false);
+    const emailError = ref(false);
+
+    const validateEmail = (email) => {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    };
 
     const submitForm = () => {
-     
       passwordError.value = false;
+      emailError.value = false;
 
-      
-      if (password.value.length <= 8) {
+      if (!validateEmail(email.value)) {
+        emailError.value = true;
+      }
+
+      if (password.value.length < 8) {
         passwordError.value = true;
       }
 
-      
-      console.log('Password:', password.value);
-      console.log('Password Length:', password.value.length);
-
-     
-      if (!passwordError.value) {
+      if (!passwordError.value && !emailError.value) {
         console.log('Login Successful');
       }
     };
@@ -61,6 +64,7 @@ export default {
       email,
       password,
       passwordError,
+      emailError,
       submitForm,
     };
   },
@@ -124,7 +128,6 @@ button:hover {
   font-family: 'Roboto', sans-serif;
 }
 
-/* Footer Styling */
 .footer {
   position: relative;
   top: 132px;

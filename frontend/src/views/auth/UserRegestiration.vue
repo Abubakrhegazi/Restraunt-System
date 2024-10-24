@@ -45,10 +45,25 @@
       const confirmPassword = ref('');
       const errorMessage = ref('');
   
-      const submitForm = () => {
-        errorMessage.value = ''; 
+      const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      };
   
-        if (password.value.length <= 8) {
+      const submitForm = () => {
+        errorMessage.value = '';
+  
+        if (!name.value || /^\d+$/.test(name.value)) {
+          errorMessage.value = 'Invalid Name';
+          return;
+        }
+  
+        if (!validateEmail(email.value)) {
+          errorMessage.value = 'Invalid email address.';
+          return;
+        }
+  
+        if (password.value.length < 8) {
           errorMessage.value = 'Password must be more than 8 characters.';
           return;
         }
@@ -59,7 +74,6 @@
         }
   
         console.log('Registration Successful');
-       
       };
   
       return {
