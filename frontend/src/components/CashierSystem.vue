@@ -5,7 +5,7 @@
       <h2>Order Summary</h2>
       <div v-for="item in order" :key="item.name" class="order-item">
         <p>{{ item.quantity }}x {{ item.name }}</p>
-        <p>\${{ item.price * item.quantity }}</p>
+        <p>\${{ item.price * item.quantity }}</p> 
       </div>
       <div class="total">
         <p>Total: \${{ calculateTotal() }}</p>
