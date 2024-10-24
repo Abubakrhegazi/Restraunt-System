@@ -1,14 +1,35 @@
 <template>
-    <div class="main-container-input">
-        <label :for="name" :class="placeholder ?? null ">{{ name }}:</label>
-        <input :name="name" :type="type" :placeholder="placeholder"/>
-    </div>
+  <div class="main-container-input">
+    <label :for="name">{{ name }}:</label>
+    <input
+      :name="name"
+      :type="type"
+      :placeholder="placeholder"
+      v-model="inputValue" 
+      @input="updateValue" 
+    />
+  </div>
 </template>
 
 <script>
- export default {
-  props: ['name', 'type', 'placeholder']
-}
+export default {
+  props: ['name', 'type', 'placeholder', 'modelValue'],
+  data() {
+    return {
+      inputValue: this.modelValue || ''
+    };
+  },
+  watch: {
+    modelValue(newValue) {
+      this.inputValue = newValue; 
+    },
+  },
+  methods: {
+    updateValue() {
+      this.$emit('update:modelValue', this.inputValue); 
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -16,29 +37,29 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 15px; /* Space between inputs */
+  margin-bottom: 15px; 
 }
 
 label {
-  font-weight: bold; /* Make label text bold */
-  margin-bottom: 5px; /* Space between label and input */
-  color: #333; /* Dark gray color for the label */
+  font-weight: bold;
+  margin-bottom: 5px; 
+  color: #333; 
 }
 
 input {
-  padding: 10px; /* Space inside the input */
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
-  font-size: 16px; /* Font size */
-  outline: none; /* Remove outline on focus */
-  transition: border-color 0.3s; /* Smooth transition for border color */
+  padding: 10px; 
+  border: 1px solid #ccc;
+  border-radius: 5px; 
+  font-size: 16px; 
+  outline: none; 
+  transition: border-color 0.3s; 
 }
 
 input:focus {
-  border-color: #3498db; /* Change border color on focus */
+  border-color: #3498db; 
 }
 
 input::placeholder {
-  color: #aaa; /* Placeholder text color */
+  color: #aaa;
 }
 </style>
