@@ -5,13 +5,13 @@
       <UserInput
         name="Email"
         type="email"
-        v-model="Email"
+        v-model="email"
         placeholder="Email"
       />
       <UserInput
         name="Password"
         type="password"
-        v-model="Password"
+        v-model="password"
         placeholder="Password"
       />
       <p v-if="passwordError" class="error">Password must be at least 8 characters long.</p>
@@ -28,29 +28,34 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import UserInput from './inc/CustomInput.vue';
 
 export default {
   components: { UserInput },
-  data() {
-    return {
-      Email: '',
-      Password: '',
-      passwordError: false,
-    };
-  },
-  methods: {
-    submitForm() {
-      this.passwordError = this.Password.length < 8;
-      if (!this.passwordError) {
+  setup() {
+    const email = ref('');
+    const password = ref('');
+    const passwordError = ref(false);
+
+    const submitForm = () => {
+      passwordError.value = password.value.length < 8;
+      if (!passwordError.value) {
         console.log('Login Successful');
       }
-    },
+    };
+
+    return {
+      email,
+      password,
+      passwordError,
+      submitForm,
+    };
   },
 };
 </script>
 
-<!-- Updated CSS with Footer Style -->
+
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Merriweather&display=swap');
 
@@ -110,12 +115,12 @@ button:hover {
 
 /* Footer Styling */
 .footer {
-position: relative;
-top:132px;
+  position: relative;
+  top: 132px;
   width: 100%;
   text-align: center;
   padding: 15px;
-  background-color: rgba(0, 0, 0, 0.85); /* Dark background */
+  background-color: rgba(0, 0, 0, 0.85);
   color: white;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
