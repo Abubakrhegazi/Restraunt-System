@@ -3,6 +3,8 @@ import UserLogin from '@/views/auth/UserLogin.vue'
 import HomeView from '@/views/HomeView.vue'
 import UserRegestiration from '@/views/auth/UserRegestiration.vue'
 import cashierView from '@/views/clientsViews/CashierView.vue'
+import EmployeeView from '@/views/clientsViews/EmployeeView.vue'
+
 
 const routes = [
   {
@@ -23,6 +25,11 @@ const routes = [
   path: '/cashier',
   name: 'cashierView',
   component: cashierView
+},
+{
+  path: '/EmpView',
+  name: 'EmployeeView',
+  component: EmployeeView
 },
   {
     path: '/registration',
