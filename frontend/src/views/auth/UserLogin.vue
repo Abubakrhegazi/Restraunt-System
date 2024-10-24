@@ -19,11 +19,11 @@
     </div>
 
     <!-- Footer Section -->
-    <footer class="footer">
+    <!-- <footer class="footer">
       <p>Contact Us</p>
       <p>Email: support@mycompany.com</p>
       <p>Phone: +1 (800) 123-4567</p>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
