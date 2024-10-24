@@ -7,7 +7,7 @@
       <div class="hero-content">
         <h1>Welcome to Our Platform</h1>
         <p>Your solution for [insert service/solution]!</p>
-        <a href="#signup" class="btn">Get Started</a>
+        <a href="/signup" class="btn">Get Started</a>
       </div>
     </section>
 
@@ -36,7 +36,7 @@
     <section class="cta-section">
       <div class="cta-content">
         <h2>Ready to get started?</h2>
-        <a href="#signup" class="btn btn-large">Join Us Today</a>
+        <a href="/signup" class="btn btn-large">Join Us Today</a>
       </div>
     </section>
   </main>
