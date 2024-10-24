@@ -18,11 +18,13 @@
       <p v-if="emailError" class="error">Invalid email address.</p>
       <button @click="submitForm">Login</button>
     </div>
-    <footer class="footer">
+
+    <!-- Footer Section -->
+    <!-- <footer class="footer">
       <p>Contact Us</p>
       <p>Email: support@mycompany.com</p>
       <p>Phone: +1 (800) 123-4567</p>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
