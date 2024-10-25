@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-      <div class="container-login">
+      <div class="container-Userlogin">
         <h2 class="title">Register</h2>
         <CustomInput
           name="Name"
@@ -102,7 +102,7 @@
     position: relative;
   }
   
-  .container-login {
+  .container-Userlogin {
     display: flex;
     flex-direction: column;
     align-items: center;

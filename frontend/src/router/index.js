@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import UserLogin from '@/views/auth/UserLogin.vue'
 import HomeView from '@/views/HomeView.vue'
 import UserRegestiration from '@/views/auth/UserRegestiration.vue'
+import EmployeeView from '@/views/clientsViews/EmployeeView.vue'
 import cashierView from '@/views/clientsViews/CashierView.vue'
 import managerView from '@/views/clientsViews/ManagerView.vue'
 
@@ -15,7 +16,10 @@ const routes = [
     path: '/login',
     name: 'userlogin',
     component: UserLogin
-  },{
+  },
+  ,
+  
+  {
     path: '/signup',
     name: 'userRegistration',
     component: UserRegestiration
@@ -29,6 +33,11 @@ const routes = [
   path: '/manager',
   name: 'managerView',
   component: managerView
+},
+{
+  path: '/EmpView',
+  name: 'EmployeeView',
+  component: EmployeeView
 },
   {
     path: '/registration',
