@@ -28,11 +28,7 @@ import { defineProps } from 'vue';
 // Props for controlling sidebar state and active tab
 const props = defineProps({
     isSidebarOpen: Boolean,
-<<<<<<< HEAD
     activeTab: String // Include activeTab prop to manage active state in sidebar
-=======
-    activeTab: String
->>>>>>> 5ead8d9af617f70d5ed37921ec753967cdfc9312
 });
 </script>
 
@@ -44,12 +40,8 @@ const props = defineProps({
     display: flex;
     flex-direction: column;
     padding: 20px;
-<<<<<<< HEAD
     padding-left: 60px; /* Shift sidebar contents to the right */
     border-right: 2px solid white;
-=======
-    border-right: 2px solid #e74c3c; /* Red border */
->>>>>>> 5ead8d9af617f70d5ed37921ec753967cdfc9312
     transition: width 0.3s ease;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */

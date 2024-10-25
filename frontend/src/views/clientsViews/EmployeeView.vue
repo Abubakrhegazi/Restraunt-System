@@ -105,9 +105,6 @@ const setActiveTab = (tab) => {
     activeTab.value = tab;
 };
 
-const logout = () => {
-    alert('You have logged out successfully');
-};
 </script>
 
 <style scoped>
