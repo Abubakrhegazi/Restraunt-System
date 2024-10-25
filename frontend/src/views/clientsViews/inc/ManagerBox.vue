@@ -26,8 +26,8 @@ export default {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 75px;
     /* More space for a larger card-like button */
 }
 
