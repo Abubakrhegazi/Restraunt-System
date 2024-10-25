@@ -20,27 +20,7 @@
         </div>
 
         <!-- Table of Meals -->
-        <div class="table-container">
-          <h2>Meals</h2>
-          <table class="meals-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Categories</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(meal, index) in meals" :key="index">
-                <td>{{ meal.name }}</td>
-                <td>{{ meal.stock }}</td>
-                <td>{{ meal.price }}</td>
-                <td>{{ meal.categories.join(', ') }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <Meals />
       </div>
     </div>
   </div>
@@ -55,9 +35,10 @@ import salesIcon from '@/assets/managerPagePhotos/piechart.png';
 import mealsIcon from '@/assets/managerPagePhotos/food.png';
 import teamIcon from '@/assets/managerPagePhotos/team.png';
 // import settingsIcon from '@/assets/managerPagePhotos/settings.png';
-import screensIcon from '@/assets/managerPagePhotos/screen.png'; // New icon for Screens
-import promotionsIcon from '@/assets/managerPagePhotos/promo.png'; // New icon for Promotions
-import ordersIcon from '@/assets/managerPagePhotos/order.png'; // New icon for Orders
+import screensIcon from '@/assets/managerPagePhotos/screen.png'; 
+import promotionsIcon from '@/assets/managerPagePhotos/promo.png'; 
+import ordersIcon from '@/assets/managerPagePhotos/order.png';
+import Meals from './ManagerItems/Meals.vue'; 
 
 export default {
   name: 'ManagerView',
@@ -65,6 +46,7 @@ export default {
     NavBar,
     SideBar,
     ManagerBox,
+    Meals,
   },
   data() {
     return {
@@ -76,12 +58,6 @@ export default {
       screensIcon, // Screens icon
       promotionsIcon, // Promotions icon
       ordersIcon, // Orders icon
-      meals: [
-        { name: 'Soup', stock: 'In stock', price: '$10.00', categories: ['Category 1', 'Category 2'] },
-        { name: 'Coffee', stock: 'In stock', price: '$10.00', categories: ['Category 1', 'Category 3'] },
-        { name: 'Soda', stock: 'In stock', price: '$10.00', categories: ['Category 2', 'Category 4'] },
-        { name: 'New Meal', stock: 'In stock', price: '$10.00', categories: ['Category 1', 'Category 4'] },
-      ],
     };
   },
 };
@@ -91,6 +67,7 @@ export default {
 .layout {
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to bottom, #8b0000, #000000);
 }
 
 .main-content {
@@ -102,7 +79,7 @@ export default {
   padding: 20px;
 }
 
-.box-container {
+ .box-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;

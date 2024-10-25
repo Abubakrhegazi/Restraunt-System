@@ -23,7 +23,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #f44d43;
+    /* background-color: #f44d43; */
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
