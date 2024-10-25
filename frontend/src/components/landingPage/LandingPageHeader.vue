@@ -6,14 +6,14 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/></svg>
         </button>
             <h2>Rest.</h2>
-          <ul class="nav-links" v-if="toggle">
+          <ul class="nav-links" id="links" v-if="toggle">
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/about">About</router-link></li>
             <li><router-link to="/features">Features</router-link></li>
             <li><router-link to="/contact">Contact</router-link></li>
           </ul>
           <!-- Auth Links -->
-          <div class="auth">
+          <div class="auth" id="auth-links">
             <router-link to="/signup">SignUp</router-link>
             <router-link to="/login">Login</router-link>
           </div>
@@ -24,39 +24,48 @@
   </template>
 
   <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
-    const toggle = ref(false)
+const toggle = ref(false);
 
-    const  toggleNav = () => {
-        toggle.value = !toggle.value
-    }
-
-    const checkScreenWidth = () => {
-      if (window.innerWidth > 600) {
-        toggle.value = true; 
-      } else {
-        toggle.value = false;      
-      }
-    };
-
-    const onScroll = () => {
-    const header = document.getElementById('header');
-    const scrollHeight = 120; 
-
-    if (window.scrollY > scrollHeight) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
+const toggleNav = () => {
+  toggle.value = !toggle.value;
 };
 
+const checkScreenWidth = () => {
+  toggle.value = window.innerWidth > 600;
+};
 
-    onMounted(() => {
-      checkScreenWidth();
-      window.addEventListener('scroll', onScroll);
-      window.addEventListener('resize', checkScreenWidth); 
-    });
+const onScroll = () => {
+  const header = document.getElementById('header');
+  const links = document.getElementById('links');
+  const authLinks = document.getElementById('auth-links');
+  const scrollHeight = 120;
+
+  if (header && links && authLinks) {
+    if (window.scrollY > scrollHeight) {
+      header.classList.add('scrolled');
+      links.classList.add('scrolled-links');
+      authLinks.classList.add('scrolled-auth-links');
+    } else {
+      header.classList.remove('scrolled');
+      links.classList.remove('scrolled-links');
+      authLinks.classList.remove('scrolled-auth-links');
+    }
+  }
+};
+
+onMounted(() => {
+  checkScreenWidth();
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('resize', checkScreenWidth);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkScreenWidth);
+  window.removeEventListener('scroll', onScroll);
+});
+
 
  </script>
   
@@ -73,7 +82,6 @@ import { ref, onMounted } from 'vue';
   top: 0;
   left: 0;
   background-color: #c9c8c7;
-  color: white;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
   
@@ -145,7 +153,7 @@ import { ref, onMounted } from 'vue';
     transition: color 0.3s ease;
     border: 2px solid #0c0c0c;
     padding: 8px;
-    padding-inline: 15px;
+    padding-inline: 18px;
     border-radius: 20px;
     color: #0c0c0c;
   }
@@ -163,6 +171,48 @@ import { ref, onMounted } from 'vue';
     color: #0c0c0c;
     background: #c9c8c7;
   }
+
+  /* Main container for the header */
+.header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* When scrolled, update the header */
+.scrolled {
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: #c9c8c7;
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Links styling when scrolled */
+.scrolled-links a {
+  color: #0c0c0c;
+  transition: ease 1s;
+}
+
+.scrolled-links a:hover {
+  background: #0c0c0c;
+  border-radius: 20px;
+  padding: 7px;
+}
+
+/* Auth styling when scrolled */
+.scrolled-auth-links a {
+  color: #0c0c0c;
+}
+
+.scrolled-auth-links a:hover {
+  color: #c9c8c7;
+  background: #0c0c0c;
+}
+ 
+
+  
   
   /* Prevent content from hiding behind the header */
   body {
@@ -198,6 +248,11 @@ import { ref, onMounted } from 'vue';
    .nav .auth{
     margin-top: 30px;
    }
+   .scrolled {
+    display: block;
+    padding: 15px 30px;
+    padding-top: 30px;
+  }
 }
 
 
