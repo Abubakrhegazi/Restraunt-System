@@ -35,10 +35,9 @@
   
   <style scoped>
   .footer {
-    background-color: #0F110C; /* Dark Red */
-    color: #FDECEF; /* White */
     padding: 20px 0;
     text-align: center;
+    background: transparent;
   }
   
   .footer-container {
@@ -58,7 +57,11 @@
   .footer-section h3 {
     font-size: 1.5em;
     margin-bottom: 10px;
-    color: #FDECEF;
+    color: #c9c8c7;
+  }
+
+  .footer-section p{
+    color: #c9c8c7
   }
   
   .footer-section ul {
@@ -71,9 +74,9 @@
   }
   
   .footer-section ul li a {
-    color: #FDECEF;
     text-decoration: none;
     font-size: 0.95em;
+    color: #c9c8c7;
   }
   
   .footer-section ul li a:hover {
@@ -90,8 +93,12 @@
     border-top: 1px solid #FDECEF;
     padding-top: 10px;
   }
+
+  .footer-bottom{
+    color: #c9c8c7
+  }
   
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .footer-container {
       flex-direction: column;
     }
