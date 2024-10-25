@@ -1,56 +1,108 @@
 <template>
-  <header class="Manager">
-    <nav>
-      <ul>
-        <managerHeader></managerHeader>
-      </ul>
-    </nav>
-  </header>
+  <div class="layout">
+    <!-- Add the navigation bar -->
+    <NavBar />
+
+    <!-- Add the sidebar component -->
+    <div class="main-content">
+      <SideBar />
+      <div class="content">
+        <!-- Manager Boxes -->
+        <div class="box-container">
+          <ManagerBox label="QR Code" :icon="qrIcon" />
+          <ManagerBox label="Sales" :icon="salesIcon" />
+          <ManagerBox label="Meals" :icon="mealsIcon" />
+          <ManagerBox label="Team" :icon="teamIcon" />
+          <!-- <ManagerBox label="Settings" :icon="settingsIcon" /> -->
+        </div>
+
+        <!-- Table of Meals -->
+        <div class="table-container">
+          <h2>Meals</h2>
+          <table class="meals-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Categories</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(meal, index) in meals" :key="index">
+                <td>{{ meal.name }}</td>
+                <td>{{ meal.stock }}</td>
+                <td>{{ meal.price }}</td>
+                <td>{{ meal.categories.join(', ') }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import managerHeader from '@/views/clientsViews/inc/ManagerHeader.vue';
+import NavBar from './inc/ManagerNav.vue'; // Import NavBar
+import SideBar from './inc/ManagerSide.vue'; // Import SideBar
+import ManagerBox from './inc/ManagerBox.vue';
+import qrIcon from '@/assets/managerPagePhotos/QR.png';
+import salesIcon from '@/assets/managerPagePhotos/piechart.png';
+import mealsIcon from '@/assets/managerPagePhotos/food.png';
+import teamIcon from '@/assets/managerPagePhotos/team.png';
+// import settingsIcon from '@/assets/managerPagePhotos/settings.png';
 
 export default {
   name: 'ManagerView',
   components: {
-    managerHeader
+    NavBar,
+    SideBar,
+    ManagerBox,
   },
   data() {
     return {
-      
+      qrIcon,
+      salesIcon,
+      mealsIcon,
+      teamIcon,
+      // settingsIcon,
+      meals: [
+        { name: 'Soup', stock: 'In stock', price: '$10.00', categories: ['Category 1', 'Category 2'] },
+        { name: 'Coffee', stock: 'In stock', price: '$10.00', categories: ['Category 1', 'Category 3'] },
+        { name: 'Soda', stock: 'In stock', price: '$10.00', categories: ['Category 2', 'Category 4'] },
+        { name: 'New Meal', stock: 'In stock', price: '$10.00', categories: ['Category 1', 'Category 4'] },
+      ],
     };
-  },
-  methods: {
-    addToOrder(item) {
-      const existingItem = this.order.find((i) => i.name === item.name);
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        this.order.push({ ...item, quantity: 1 });
-      }
-    },
-    calculateTotal() {
-      return this.order.reduce((total, item) => total + item.price * item.quantity, 0);
-    },
-    calculateTax() {
-      return (this.calculateTotal() * this.taxRate).toFixed(2);
-    },
-    calculateTotalWithTax() {
-      return (parseFloat(this.calculateTotal()) + parseFloat(this.calculateTax())).toFixed(2);
-    },
-    processPayment() {
-      alert("Payment processed! Total: $" + this.calculateTotalWithTax());
-      this.order = [];
-    },
-    handleKeypadClick(num) {
-      // Handle quantity input logic
-      console.log("Keypad number pressed:", num);
-    },
   },
 };
 </script>
 
 <style scoped>
+.layout {
+  display: flex;
+  flex-direction: column;
+}
 
+.main-content {
+  display: flex;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.box-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 </style>
