@@ -2,14 +2,20 @@
   <header class="Manager">
     <nav>
       <ul>
-        
+        <managerHeader></managerHeader>
       </ul>
     </nav>
   </header>
 </template>
 
 <script>
+import managerHeader from '@/views/clientsViews/inc/ManagerHeader.vue';
+
 export default {
+  name: 'ManagerView',
+  components: {
+    managerHeader
+  },
   data() {
     return {
       

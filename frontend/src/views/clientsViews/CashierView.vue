@@ -13,7 +13,7 @@
           <p>Total: ${{ calculateTotal() }}</p>
           <p>Taxes: ${{ calculateTax() }}</p>
           <p>
-            <strong>Total with Tax: \${{ calculateTotalWithTax() }}</strong>
+            <strong>Total with Tax: ${{ calculateTotalWithTax() }}</strong>
           </p>
         </div>
       </div>
