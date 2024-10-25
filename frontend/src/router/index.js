@@ -4,7 +4,11 @@ import HomeView from '@/views/HomeView.vue'
 import UserRegestiration from '@/views/auth/UserRegestiration.vue'
 import EmployeeView from '@/views/clientsViews/EmployeeView.vue'
 import cashierView from '@/views/clientsViews/CashierView.vue'
+<<<<<<< HEAD
+
+=======
 import managerView from '@/views/clientsViews/ManagerView.vue'
+>>>>>>> 5ead8d9af617f70d5ed37921ec753967cdfc9312
 
 const routes = [
   {

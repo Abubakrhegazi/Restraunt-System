@@ -197,7 +197,7 @@ onUnmounted(() => {
 
 .scrolled-links a:hover {
   background: #0c0c0c;
-  border-radius: 20px;
+  border-radius: 30px;
   padding: 7px;
 }
 

@@ -1,6 +1,12 @@
 <template>
     <div class="employee-view">
-        <Sidebar :isSidebarOpen="isSidebarOpen" @setActiveTab="setActiveTab" @toggleSidebar="toggleSidebar" />
+        <!-- Sidebar Toggle Button -->
+        <div class="toggle-sidebar" @click="toggleSidebar">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <!-- Sidebar for Tab Navigation -->
+        <Sidebar :isSidebarOpen="isSidebarOpen" :activeTab="activeTab" @setActiveTab="setActiveTab" />
 
         <div class="content" :class="{ 'content-sidebar-closed': !isSidebarOpen }">
             <div class="toggle-sidebar" @click="toggleSidebar">
@@ -15,15 +21,28 @@
                 <p>Phone: {{ customer.phone }}</p>
             </div>
 
-            <div v-if="activeTab === 'salary'" class="tab-content">
-                <h2>Salary</h2>
-                <p>Current Salary: \${{ currentSalary }}</p>
-                <p>Next Salary Day: {{ nextSalaryDay }}</p>
+            <!-- Account Balance Tab -->
+            <div v-if="activeTab === 'balance'" class="tab-content">
+                <h2>Employee Information</h2>
+                <p><strong>Position:</strong> {{ employeePosition }}</p>
+                <p><strong>Salary:</strong> ${{ salary }}</p>
+                <p><strong>Next Payday:</strong> {{ nextPayday }}</p>
+                <p><strong>Working Days This Month:</strong></p>
+                <ul>
+                    <li v-for="day in workingDays" :key="day">{{ day }}</li>
+                </ul>
             </div>
 
             <div v-if="activeTab === 'calendar'" class="tab-content">
-                <h2>Calendar</h2>
-                <p>Employee can view their schedule here.</p>
+                <h2>Employee Schedule</h2>
+                <vue-cal
+                    :events="events"
+                    @cell-click="addEvent"
+                    :time="false"
+                    :disable-views="['days']"
+                    :view="'month'"
+                    locale="en"
+                />
             </div>
 
             <div v-if="activeTab === 'logout'" class="tab-content">
@@ -37,22 +56,51 @@
 <script setup>
 import { ref } from 'vue';
 import Sidebar from '@/components/Sidebar.vue';
+import 'vue-cal/dist/vuecal.css';  // Import Vue Cal's CSS
+import VueCal from 'vue-cal';      // Import Vue Cal component
 
-const activeTab = ref('profile');
+// Register Vue Cal as a component
+const components = { VueCal };
+
+// State to track active tab
+const activeTab = ref('calendar');
+
+// State to track if the sidebar is open
 const isSidebarOpen = ref(true);
 const customer = ref({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '123-456-7890',
-    image: 'https://via.placeholder.com/150'
+    name: 'John Doe', // Example name
+    email: 'john.doe@example.com', // Example email
+    phone: '123-456-7890', // Example phone number
+    image: 'https://via.placeholder.com/150' // Example profile image URL
 });
-const currentSalary = ref(50000); // Example current salary
-const nextSalaryDay = ref('15th of every month');
 
+// Events array to store employee schedule
+const events = ref([
+    { start: '2024-10-01', end: '2024-10-01', title: 'Shift - 9:00 AM to 5:00 PM' },
+    { start: '2024-10-03', end: '2024-10-03', title: 'Shift - 1:00 PM to 9:00 PM' },
+]);
+
+// Function to log out
+const logout = () => {
+    alert('You have logged out successfully');
+};
+
+// Function to toggle the sidebar visibility
 const toggleSidebar = () => {
     isSidebarOpen.value = !isSidebarOpen.value;
 };
 
+// Function to add an event on a clicked day (Optional, for event creation)
+const addEvent = (date) => {
+    events.value.push({
+        start: date,
+        end: date,
+        title: 'New Shift'
+    });
+    alert(`Added shift on ${date}`);
+};
+
+// Function to set active tab
 const setActiveTab = (tab) => {
     activeTab.value = tab;
 };
@@ -118,7 +166,16 @@ button {
 }
 
 button:hover {
-    background-color: #c0392b; /* Darker red for hover */
-    transform: translateY(-2px); /* Slight upward movement */
+    background-color: #555;
+}
+
+.toggle-sidebar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    z-index: 1000; /* Ensure the toggle button is on top */
 }
 </style>
