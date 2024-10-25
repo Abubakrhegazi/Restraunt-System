@@ -1,12 +1,12 @@
 <template>
     <div class="employee-view">
         <!-- Sidebar Toggle Button -->
-        <div class="toggle-sidebar">
-            <i class="fas" :class="isSidebarOpen ? 'fa-times' : 'fa-bars'" @click="toggleSidebar"></i>
+        <div class="toggle-sidebar" @click="toggleSidebar">
+            <i class="fas fa-bars"></i>
         </div>
 
         <!-- Sidebar for Tab Navigation -->
-        <Sidebar :isSidebarOpen="isSidebarOpen" @setActiveTab="setActiveTab" />
+        <Sidebar :isSidebarOpen="isSidebarOpen" :activeTab="activeTab" @setActiveTab="setActiveTab" />
 
         <!-- Content Area -->
         <div class="content" :class="{ 'content-sidebar-closed': !isSidebarOpen }">
@@ -21,18 +21,27 @@
 
             <!-- Account Balance Tab -->
             <div v-if="activeTab === 'balance'" class="tab-content">
-                <h2>Account Balance</h2>
-                <p>Current Balance: \${{ accountBalance }}</p>
-                <p>Next Payday: {{ nextPayday }}</p>
-                <button @click="addFunds(10)">Add $10</button>
-                <button @click="deductFunds(10)">Deduct $10</button>
+                <h2>Employee Information</h2>
+                <p><strong>Position:</strong> {{ employeePosition }}</p>
+                <p><strong>Salary:</strong> ${{ salary }}</p>
+                <p><strong>Next Payday:</strong> {{ nextPayday }}</p>
+                <p><strong>Working Days This Month:</strong></p>
+                <ul>
+                    <li v-for="day in workingDays" :key="day">{{ day }}</li>
+                </ul>
             </div>
 
             <!-- Calendar Tab -->
             <div v-if="activeTab === 'calendar'" class="tab-content">
-                <h2>Calendar</h2>
-                <p>Employee can view their schedule here.</p>
-                <!-- Calendar content can go here -->
+                <h2>Employee Schedule</h2>
+                <vue-cal
+                    :events="events"
+                    @cell-click="addEvent"
+                    :time="false"
+                    :disable-views="['days']"
+                    :view="'month'"
+                    locale="en"
+                />
             </div>
 
             <!-- Logout Tab -->
@@ -46,38 +55,32 @@
 
 <script setup>
 import { ref } from 'vue';
-import Sidebar from '@/components/Sidebar.vue'; // Import Sidebar component
+import Sidebar from '@/components/Sidebar.vue';
+import 'vue-cal/dist/vuecal.css';  // Import Vue Cal's CSS
+import VueCal from 'vue-cal';      // Import Vue Cal component
+
+// Register Vue Cal as a component
+const components = { VueCal };
 
 // State to track active tab
-const activeTab = ref('profile');
+const activeTab = ref('calendar');
 
 // State to track if the sidebar is open
 const isSidebarOpen = ref(true);
 
 // Customer data including profile image
 const customer = ref({
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '123-456-7890',
-    image: 'https://via.placeholder.com/150' // Profile image URL
+    name: 'John Doe', // Example name
+    email: 'john.doe@example.com', // Example email
+    phone: '123-456-7890', // Example phone number
+    image: 'https://via.placeholder.com/150' // Example profile image URL
 });
 
-// Account balance and payday
-const accountBalance = ref(100);
-const nextPayday = ref('15th of every month'); // Example payday
-
-// Methods to add and deduct funds
-const addFunds = (amount) => {
-    accountBalance.value += amount;
-};
-
-const deductFunds = (amount) => {
-    if (accountBalance.value >= amount) {
-        accountBalance.value -= amount;
-    } else {
-        alert('Insufficient funds');
-    }
-};
+// Events array to store employee schedule
+const events = ref([
+    { start: '2024-10-01', end: '2024-10-01', title: 'Shift - 9:00 AM to 5:00 PM' },
+    { start: '2024-10-03', end: '2024-10-03', title: 'Shift - 1:00 PM to 9:00 PM' },
+]);
 
 // Function to log out
 const logout = () => {
@@ -87,6 +90,16 @@ const logout = () => {
 // Function to toggle the sidebar visibility
 const toggleSidebar = () => {
     isSidebarOpen.value = !isSidebarOpen.value;
+};
+
+// Function to add an event on a clicked day (Optional, for event creation)
+const addEvent = (date) => {
+    events.value.push({
+        start: date,
+        end: date,
+        title: 'New Shift'
+    });
+    alert(`Added shift on ${date}`);
 };
 
 // Function to set active tab
@@ -153,5 +166,6 @@ button:hover {
     font-size: 24px;
     color: white;
     cursor: pointer;
+    z-index: 1000; /* Ensure the toggle button is on top */
 }
 </style>

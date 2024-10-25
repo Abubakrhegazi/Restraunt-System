@@ -8,11 +8,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { defineProps } from 'vue';
 
 // Props for controlling sidebar state and active tab
 const props = defineProps({
-    isSidebarOpen: Boolean
+    isSidebarOpen: Boolean,
+    activeTab: String // Include activeTab prop to manage active state in sidebar
 });
 </script>
 
@@ -23,9 +24,20 @@ const props = defineProps({
     display: flex;
     flex-direction: column;
     padding: 20px;
+    padding-left: 60px; /* Shift sidebar contents to the right */
     border-right: 2px solid white;
     transition: width 0.3s ease;
 }
+.toggle-sidebar {
+    position: absolute;
+    top: 20px;
+    left: 40px; /* Adjust this value to move the toggle button to the right */
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    z-index: 1000; /* Ensure the toggle button is on top */
+}
+
 
 .sidebar-closed {
     width: 0;
