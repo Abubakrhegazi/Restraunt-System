@@ -1,22 +1,18 @@
+<!-- Sidebar.vue -->
 <template>
     <div class="sidebar" :class="{ 'sidebar-closed': !isSidebarOpen }">
-        <!-- Toggle Button for Sidebar -->
         <button class="toggle-button" @click="$emit('toggleSidebar')" aria-label="Toggle Sidebar">
             <i :class="isSidebarOpen ? 'fas fa-angle-left' : 'fas fa-angle-right'"></i>
         </button>
 
         <div class="menu">
-            <button @click="$emit('setActiveTab', 'profile')" :class="{ active: activeTab === 'profile' }">
-                <i class="fas fa-user"></i> <span v-if="isSidebarOpen">Profile</span>
-            </button>
-            <button @click="$emit('setActiveTab', 'salary')" :class="{ active: activeTab === 'salary' }">
-                <i class="fas fa-dollar-sign"></i> <span v-if="isSidebarOpen">Salary</span>
-            </button>
-            <button @click="$emit('setActiveTab', 'calendar')" :class="{ active: activeTab === 'calendar' }">
-                <i class="fas fa-calendar"></i> <span v-if="isSidebarOpen">Calendar</span>
-            </button>
-            <button @click="$emit('setActiveTab', 'logout')" :class="{ active: activeTab === 'logout' }">
-                <i class="fas fa-sign-out-alt"></i> <span v-if="isSidebarOpen">Logout</span>
+            <button
+                v-for="(item, index) in menuItems"
+                :key="index"
+                @click="$emit('setActiveTab', item.name)"
+                :class="{ active: activeTab === item.name }"
+            >
+                <i :class="item.icon"></i> <span v-if="isSidebarOpen">{{ item.label }}</span>
             </button>
         </div>
     </div>
@@ -25,60 +21,58 @@
 <script setup>
 import { defineProps } from 'vue';
 
-// Props for controlling sidebar state and active tab
 const props = defineProps({
     isSidebarOpen: Boolean,
-    activeTab: String // Include activeTab prop to manage active state in sidebar
+    activeTab: String
 });
+
+const menuItems = [
+    { name: 'profile', label: 'Profile', icon: 'fas fa-user' },
+    { name: 'salary', label: 'Salary', icon: 'fas fa-dollar-sign' },
+    { name: 'calendar', label: 'Calendar', icon: 'fas fa-calendar' },
+    { name: 'logout', label: 'Logout', icon: 'fas fa-sign-out-alt' }
+];
 </script>
+
 
 <style scoped>
 
 .sidebar {
-    width: 250px; /* Default sidebar width */
-    background-color: #34495e; /* Darker blue-gray background */
+    width: 250px; 
+    background-color: #0c0c0c; /* Dark background */
+    color: #ffffff; /* White text color */
     display: flex;
     flex-direction: column;
     padding: 20px;
-    padding-left: 60px; /* Shift sidebar contents to the right */
-    border-right: 2px solid white;
+    padding-left: 60px;
+    border-right: 2px solid #8b0000; /* Accent border color */
     transition: width 0.3s ease;
     position: relative;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.toggle-sidebar {
-    position: absolute;
-    top: 20px;
-    left: 40px; /* Adjust this value to move the toggle button to the right */
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-    z-index: 1000; /* Ensure the toggle button is on top */
-}
-
 
 .sidebar-closed {
     width: 60px; /* Collapsed width */
 }
 
 .toggle-button {
-    background-color: #e74c3c; /* Bright red background */
-    border: none; /* No border */
-    border-radius: 8px; /* Rounded corners */
-    color: white; /* Text color */
-    font-size: 24px; /* Icon size */
-    cursor: pointer; /* Pointer cursor on hover */
-    padding: 10px 15px; /* Padding for button */
-    margin-bottom: 20px; /* Space below button */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
-    display: flex; /* Flexbox to align icon */
-    align-items: center; /* Center icon vertically */
+    background-color: #8b0000; /* Dark red background */
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
 }
 
 .toggle-button:hover {
-    background-color: #c0392b; /* Darker red on hover */
-    transform: scale(1.05); /* Slight scale effect on hover */
+    background-color: #600000; /* Darker red on hover */
+    transform: scale(1.05);
 }
 
 .menu {
@@ -91,22 +85,30 @@ const props = defineProps({
     align-items: center;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: #2c3e50; /* Darker background for buttons */
-    color: white; /* Button text color */
-    border: none; /* No border */
-    border-radius: 8px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
-    font-size: 16px; /* Font size */
+    background-color: #1a1a1a; /* Slightly lighter for contrast */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 16px;
 }
 
 .menu button:hover {
-    background-color: #1abc9c; /* Lighter color on hover */
-    transform: translateY(-2px); /* Slight upward movement on hover */
+    background-color: #8b0000; /* Dark red on hover */
+    transform: translateY(-2px);
 }
 
 .menu button.active {
-    background-color: #e74c3c; /* Active button background color */
-    border-radius: 8px; /* Rounded corners */
+    background-color: #8b0000; /* Dark red for active state */
+    border-radius: 8px;
+}
+
+.menu button i {
+    margin-right: 10px;
+}
+
+.menu button span {
+    font-weight: 500;
 }
 </style>
