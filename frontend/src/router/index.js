@@ -35,14 +35,14 @@ const routes = [
   component: managerView
 },
 {
-  path: '/EmpView',
+  path: '/employee',
   name: 'EmployeeView',
   component: EmployeeView
 },
-  {
+{
     path: '/registration',
     redirect: '/signup'
-  }
+}
 ]
 
 const router = createRouter({

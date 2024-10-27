@@ -46,38 +46,38 @@ export default {
         {
           name: "Lunch Maki",
           price: 13.8,
-          image: require("@/assets/stirps.jpg")
+          image: require("@/assets/food/stirps.jpg")
         },
 
         {
           name: "Pasta 4 formaggi",
           price: 6.33,
-          image: require("@/assets/pasta.jpg")
+          image: require("@/assets/food/pasta.jpg")
         },
         {
           name: "Vegetarian Pizza",
           price: 8.05,
-          image: require("@/assets/pizza.jpg")
+          image: require("@/assets/food/pizza.jpg")
         },
         {
           name: "Vegetarian Pizza",
           price: 8.05,
-          image: require("@/assets/pizza.jpg")
+          image: require("@/assets/food/pizza.jpg")
         },
         {
           name: "Bacon Burger",
           price: 8.63,
-          image: require("@/assets/burger1.jpg")
+          image: require("@/assets/food/burger1.jpg")
         },
         {
           name: "Cheese Burger",
           price: 8.05,
-          image: require("@/assets/burger.jpeg")
+          image: require("@/assets/food/burger.jpeg")
         },
         {
           name: "Lunch Maki",
           price: 13.8,
-          image: require("@/assets/stirps.jpg")
+          image: require("@/assets/food/stirps.jpg")
         }
       ],
       order: [],

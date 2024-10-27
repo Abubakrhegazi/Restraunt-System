@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <LandingPageHeader />
+
     <main class="landing">
       <!--hero section-->
       <LandingPageWindow1 />
@@ -17,6 +18,7 @@
         </div>
       </section>
     </main>
+    
     <LandingPageFooter />
   </div>
 </template>
