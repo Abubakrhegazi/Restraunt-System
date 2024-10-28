@@ -1,7 +1,7 @@
 <template>
    <div class="feature-item">
             <img :src="path" alt="Chiefs Hat" />
-            <h3>{{feature}}</h3>
+            <h3>{{ feature }}</h3>
             <p>{{ content }}</p>
     </div>
 </template>

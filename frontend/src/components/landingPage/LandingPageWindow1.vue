@@ -6,7 +6,7 @@
         <h1>Make your dream resturant a reality!</h1>
         <p>Your future resturant is in between your hands, signup for a free trial and enjoy your
             first month for only 1$!</p>
-        <a href="/signup" class="btn">Get Started</a>
+        <RouterLink to="/signup" class="btn">Get Started</RouterLink>
       </div>
     </section>
 </template>

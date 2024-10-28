@@ -8,6 +8,7 @@
                     <th>Role</th>
                     <th>Status</th>
                     <th>Shift</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,10 @@
                     <td>{{ member.role }}</td>
                     <td>{{ member.status }}</td>
                     <td>{{ member.shift }}</td>
+                    <td>
+                        <button class="edit-button" @click="editMember(index)">Edit</button>
+                        <button class="fire-button" @click="fireMember(index)">🔥 Fire</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -36,6 +41,16 @@ export default {
             ],
         };
     },
+    methods: {
+        editMember(index) {
+            // Logic to edit the member (e.g., open a form for editing)
+            alert(`Edit member: ${this.team[index].name}`);
+        },
+        fireMember(index) {
+            // Logic to fire the member (e.g., remove from the list or change status)
+            alert(`Fire member: ${this.team[index].name}`);
+        }
+    }
 };
 </script>
 
@@ -64,17 +79,42 @@ export default {
 
 .team-table th,
 .team-table td {
-    padding: 10px;
+    padding: 15px;
+    /* Increased padding for better readability */
+    font-size: 18px;
+    /* Increased font size */
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
 .team-table th {
-    background-color: #f5f5f5;
+    background-color: #e0e0e0;
     font-weight: bold;
 }
 
 .team-table tr:hover {
     background-color: #f1f1f1;
 }
+
+.edit-button,
+.fire-button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    /* Green for Edit */
+}
+
+.fire-button {
+    background-color: #e53935;
+    /* Red for Fire */
+}
+
 </style>

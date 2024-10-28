@@ -1,8 +1,8 @@
 <template>
-    <div class="box">
+    <button class="box" @click="handleClick">
         <img :src="icon" alt="icon" class="box-icon" />
         <p class="box-label">{{ label }}</p>
-    </div>
+    </button>
 </template>
 
 <script>
@@ -11,6 +11,11 @@ export default {
     props: {
         label: String,
         icon: String,
+    },
+    methods: {
+        handleClick() {
+            this.$emit('selectSection', this.label); // Emit the label when button is clicked
+        },
     },
 };
 </script>
@@ -26,9 +31,23 @@ export default {
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     cursor: pointer;
-    width: 110px;
-    height: 75px;
-    /* More space for a larger card-like button */
+    width: 165px;
+    height: 140px;
+    border: none;
+    /* Removes default button border */
+    outline: none;
+    /* Removes outline on focus */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.box:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .box-icon {
