@@ -2,7 +2,7 @@
   <div class="Cashier">
  
     <div class="order-summary">
-      <h2>Order Summary</h2>
+      <h2>Order Summaryc</h2>
       <div v-for="item in order" :key="item.name" class="order-item">
         <p>{{ item.quantity }}x {{ item.name }}</p>
         <p>\${{ item.price * item.quantity }}</p> 

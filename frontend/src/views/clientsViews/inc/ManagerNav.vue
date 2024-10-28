@@ -44,7 +44,7 @@ export default {
     justify-content: space-between;
     align-items: flex-start;
     padding: 10px 20px;
-    background-color: #f44d43;
+    background-color: #8b0000;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 200px;
@@ -52,7 +52,7 @@ export default {
 
 .logout-button {
     background-color: white;
-    color: #f44d43;
+    color: #8b0000;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
