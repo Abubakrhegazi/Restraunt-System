@@ -99,11 +99,12 @@ export default {
 }
 
 .box-container {
-  position: relative;
-  bottom: 110px;
+  /* position: relative;
+  bottom: 110px; */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  margin-bottom: 30px;
+  margin-top: -105px;
+  /* Use negative margin to move it up slightly */
   grid-template-rows: 1fr;
   grid-auto-flow: column;
   gap: 30px;
@@ -120,9 +121,14 @@ export default {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.data {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
 
 
-.meals-table {
+/* .meals-table {
   width: 100%;
   border-collapse: collapse;
   border-radius: 10px;
@@ -144,5 +150,5 @@ export default {
   background-color: #e0e0e0;
   color: #333;
   font-weight: bold;
-}
+} */
 </style>

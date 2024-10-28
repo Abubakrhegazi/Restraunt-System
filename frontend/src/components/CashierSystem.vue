@@ -1,9 +1,19 @@
 <template>
+<<<<<<< HEAD
   <div class="cashier-system">
     <!-- Navbar -->
     <nav class="navbar">
       <div class="logo">
         <img src="@/assets/logo.png" alt="Restaurant Logo" />
+=======
+  <div class="Cashier">
+ 
+    <div class="order-summary">
+      <h2>Order Summaryc</h2>
+      <div v-for="item in order" :key="item.name" class="order-item">
+        <p>{{ item.quantity }}x {{ item.name }}</p>
+        <p>\${{ item.price * item.quantity }}</p> 
+>>>>>>> b1dabb903441944f09bba33dc464196437c98781
       </div>
       <button class="index-button" @click="goToIndex">Home</button>
     </nav>
