@@ -15,7 +15,7 @@
                 <button @click="exportMeals">Export</button>
             </div>
 
-            <!-- Filter w Sort -->
+            <!-- Filter w Search -->
             <div class="filters">
                 <select v-model="selectedBulkAction" @change="applyBulkAction">
                     <option value="">Bulk actions</option>
