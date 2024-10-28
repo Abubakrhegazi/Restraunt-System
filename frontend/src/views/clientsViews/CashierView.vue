@@ -4,6 +4,7 @@
     <nav class="navbar">
       <div class="logo">
         <img src="@/assets/logo/chefIcon.png" alt="Restaurant Logo" />
+        <p>Rest.</p>
       </div>
       <button class="index-button" @click="goToIndex">Home</button>
     </nav>
@@ -38,18 +39,8 @@
       </div>
 
       <!-- Right Side: Food Menu -->
-      <div class="right-section">
-        <div class="categories-section">
-          <h2>Categories</h2>
-          <div class="categories">
-            <button @click="filterItems('All')" class="category-button">All</button>
-            <button @click="filterItems('Appetizers')" class="category-button">Appetizers</button>
-            <button @click="filterItems('Main Dishes')" class="category-button">Main Dishes</button>
-            <button @click="filterItems('Desserts')" class="category-button">Desserts</button>
-            <button @click="filterItems('Drinks')" class="category-button">Drinks</button>
-          </div>
-        </div>
 
+      <div class="right-section">
         <div class="food-menu-title">
           <h1>Food Menu</h1>
         </div>
@@ -62,32 +53,47 @@
           </div>
         </div>
       </div>
+      <Sidebar :isSidebarOpen="isSidebarOpen" :activeTab="activeTab" @toggleSidebar="toggleSidebar"
+        @setActiveTab="setActiveTab" />
+
     </div>
   </div>
 </template>
 
 <script>
+import Sidebar from './inc/ManagerSide.vue';
+
+
 export default {
+  components: { Sidebar, },
   data() {
     return {
       foodItems: [
         { name: "Lunch Maki", price: 13.8, category: "Main Dishes", image: require("@/assets/food/stirps.jpg") },
         { name: "Pasta 4 formaggi", price: 6.5, category: "Main Dishes", image: require("@/assets/food/pasta.jpg") },
-        // { name: "Vegetarian Pizza", price: 10.50, category: "Main Dishes", image: require("@/assets/food/pizza.jpg") },
-        // { name: "Bacon Burger", price: 4.63, category: "Main Dishes", image: require("@/assets/food/image1.jpg") },
-        // { name: "Cheese Burger", price: 8.95, category: "Main Dishes", image: require("@/assets/food/image 2.jpeg") },
-        // { name: "Caesar Salad", price: 5.00, category: "Appetizers", image: require("@/assets/food/image3.jpg") },
-        // { name: "Chocolate Cake", price: 4.50, category: "Desserts", image: require("@/assets/food/image4.jpg") },
-        // { name: "Mojito", price: 3.00, category: "Drinks", image: require("@/assets/food/image5.jpg") },
-        // { name: "Chocolate Cake", price: 4.50, category: "Desserts", image: require("@/assets/food/image6.jpg") },
-        // { name: "Mojito", price: 3.00, category: "Drinks", image: require("@/assets/food/image7.jpg") },
+        { name: "Vegetarian Pizza", price: 10.50, category: "Main Dishes", image: require("@/assets/food/pizza.jpg") },
+        { name: "Bacon Burger", price: 4.63, category: "Main Dishes", image: require("@/assets/food/image1.jpg") },
+        { name: "Cheese Burger", price: 8.95, category: "Main Dishes", image: require("@/assets/food/image 2.jpg") },
+        { name: "Caesar Salad", price: 5.00, category: "Appetizers", image: require("@/assets/food/image3.jpeg") },
+        { name: "Chocolate Cake", price: 4.50, category: "Desserts", image: require("@/assets/food/images (6).jpeg") },
+        { name: "Lunch Maki", price: 13.8, category: "Main Dishes", image: require("@/assets/food/stirps.jpg") },
+        { name: "Pasta 4 formaggi", price: 6.5, category: "Main Dishes", image: require("@/assets/food/pasta.jpg") },
+        { name: "Vegetarian Pizza", price: 10.50, category: "Main Dishes", image: require("@/assets/food/pizza.jpg") },
+        { name: "Bacon Burger", price: 4.63, category: "Main Dishes", image: require("@/assets/food/image1.jpg") },
+        { name: "Cheese Burger", price: 8.95, category: "Main Dishes", image: require("@/assets/food/image 2.jpg") },
+        { name: "Caesar Salad", price: 5.00, category: "Appetizers", image: require("@/assets/food/image3.jpeg") },
+        { name: "Chocolate Cake", price: 4.50, category: "Desserts", image: require("@/assets/food/images (6).jpeg") },
       ],
+      order: [], // Initialize the order array here
       promoCode: '',
       promoError: '',
       taxRate: 0.14,
-      selectedCategory: 'All' // Track selected category
+      selectedCategory: 'All',
+      isSidebarOpen: true, // default to open or closed
+      activeTab: 'all',
     };
   },
+
   computed: {
     filteredFoodItems() {
       if (this.selectedCategory === 'All') {
@@ -135,6 +141,8 @@ export default {
       if (this.promoCode === validPromoCode) {
         alert('Promo code applied successfully! You get a 10% discount.');
       } else {
+        this.promoError =  'Invalid promo code';
+
       }
     },
     processPayment() {
@@ -146,6 +154,12 @@ export default {
     },
     goToIndex() {
       this.$router.push('/index');
+    },
+    toggleSidebar() {
+      this.isSidebarOpen = !this.isSidebarOpen;
+    },
+    setActiveTab(tab) {
+      this.activeTab = tab;
     }
   }
 };
@@ -171,10 +185,18 @@ export default {
 }
 
 .promotion-section {
-  margin-top: 20px;
   display: flex;
-  position: relative;
-  left: 90px;
+  flex-direction: column;
+  align-items: flex-start;
+  /* Align items to the left */
+  gap: 10px;
+  /* Add space between items */
+}
+
+.promo-input,
+.promo-button {
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .promo-input {
@@ -247,8 +269,17 @@ export default {
   background-color: #8b0000;
 }
 
+.logo{
+  display: flex;
+}
 .logo img {
   height: 50px;
+}
+
+.logo p{
+  font-size: 1.5em;
+    margin: 0 auto;
+    color: #0c0c0c;
 }
 
 .index-button {
@@ -329,6 +360,15 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.food-menu {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  /* Default to 6 items per row */
+  gap: 20px;
+  width: 100%;
+  padding: 10px;
 }
 
 .food-menu-title h1 {
