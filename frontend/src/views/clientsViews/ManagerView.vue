@@ -46,6 +46,7 @@
 import NavBar from './inc/ManagerNav.vue';
 import SideBar from './inc/ManagerSide.vue';
 import ManagerBox from './inc/ManagerBox.vue';
+import AddProduct from './inc/AddProduct.vue';
 import salesIcon from '@/assets/managerPagePhotos/piechart.png';
 import mealsIcon from '@/assets/managerPagePhotos/food.png';
 import teamIcon from '@/assets/managerPagePhotos/team.png';
@@ -56,7 +57,7 @@ import Meals from './ManagerItems/Meals.vue';
 import Team from './ManagerItems/Team.vue';
 
 export default {
-  components: { NavBar, ManagerBox, SideBar, Meals, Team },
+  components: { NavBar, ManagerBox, SideBar, Meals, Team, AddProduct, },
   data() {
     return {
       selectedSection: '', // Initialize selectedSection

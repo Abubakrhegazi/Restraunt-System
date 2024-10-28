@@ -1,23 +1,23 @@
 <template>
     <div class="meals-section">
-        <!-- Switch maben Meals w Categories -->
+        <!-- Switch between Meals and Categories -->
         <div class="tabs">
             <button :class="{ active: selectedTab === 'meals' }" @click="selectedTab = 'meals'">Meals</button>
             <button :class="{ active: selectedTab === 'categories' }"
                 @click="selectedTab = 'categories'">Categories</button>
         </div>
 
-        <!-- add/import/export -->
+        <!-- Add/Import/Export buttons -->
         <div v-if="selectedTab === 'meals'" class="meals-content">
             <div class="actions">
-                <button @click="addNewMeal">Add New</button>
+                <AddProduct />
                 <button @click="importMeals">Import</button>
                 <button @click="exportMeals">Export</button>
             </div>
 
-            <!-- Filter w Search -->
+            <!-- Filter and Search -->
             <div class="filters">
-                <select v-model="selectedBulkAction" @change="applyBulkAction">
+                <select v-model="selectedBulkAction">
                     <option value="">Bulk actions</option>
                     <option value="delete">Delete</option>
                 </select>
@@ -74,7 +74,10 @@
 </template>
 
 <script>
+import AddProduct from '../inc/AddProduct.vue';
+
 export default {
+    components: { AddProduct },
     data() {
         return {
             selectedTab: 'meals',
@@ -84,33 +87,42 @@ export default {
             selectedStockStatus: '',
             searchQuery: '',
             selectAll: false,
+            // toggleAdd: false,
             meals: [
                 { id: 1, name: 'Soup', inStock: true, price: '$10.00', categories: ['Category 1', 'Category 2'] },
-                { id: 2, name: 'Coffee', inStock: true, price: '$10.00', categories: ['Category 1'] },
-                // Add more meals as needed
+                { id: 2, name: 'Coffee', inStock: false, price: '$2.30', categories: ['Category 3'] },
+                { id: 3, name: 'Pasta', inStock: true, price: '$32.00', categories: ['Category 5'] },
+                { id: 4, name: 'Burger', inStock: true, price: '$45.00', categories: ['Category 4'] },
             ],
         };
     },
     computed: {
         filteredMeals() {
+            // Filtering logic for meals
             return this.meals.filter(meal => {
-                // Apply filters for category, product type, stock status, and search query
-                return true; // Implement your filtering logic here
+                let matchesCategory = !this.selectedCategory || meal.categories.includes(this.selectedCategory);
+                let matchesStock = !this.selectedStockStatus || (this.selectedStockStatus === 'inStock' ? meal.inStock : !meal.inStock);
+                let matchesSearch = meal.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+                return matchesCategory && matchesStock && matchesSearch;
             });
         },
     },
     methods: {
         addNewMeal() {
-            // Logic to add a new meal
+            // toggleAdd = true;
+            alert('Adding...');
+
         },
         importMeals() {
-            // Logic to import meals
+            alert('Importing meals...');
         },
         exportMeals() {
-            // Logic to export meals
+            alert('Exporting meals...');
         },
         applyBulkAction() {
-            // Logic for bulk actions
+            if (this.selectedBulkAction === 'delete') {
+                this.meals = this.meals.filter(meal => !meal.selected);
+            }
         },
         filterMeals() {
             // Logic to filter meals based on selected filters
@@ -125,105 +137,56 @@ export default {
 </script>
 
 <style scoped>
-.table-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 1200px;
+/* Meals Section Styles */
+.meals-section {
     margin: 20px;
-    flex-grow: 1;
-    max-width: 80%;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.meals-header {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.meals-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.meals-table th,
-.meals-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    font-size: 18px;
-}
-
-.meals-table th {
-    background-color: #f5f5f5;
-    font-weight: bold;
-}
-
-.meals-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Modify Button Styles */
-#modify {
-    background-color: #3498db;
-    /* Blue */
-    color: white;
-}
-
-#modify:hover {
-    background-color: #2980b9;
-    /* Darker Blue */
-    transform: scale(1.05);
-}
-
-/* Delete Button Styles */
-#delete {
-    background-color: #e74c3c;
-    /* Red */
-    color: white;
-}
-
-#delete:hover {
-    background-color: #c0392b;
-    /* Darker Red */
-    transform: scale(1.05);
 }
 
 .tabs {
     display: flex;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .tabs button.active {
     font-weight: bold;
+    background-color: #d32f2f;
+    color: white;
 }
 
-.meals-content .actions {
+/* Filters and Actions */
+.filters,
+.actions {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
-.filters {
-    display: flex;
-    gap: 10px;
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
 }
 
+button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Table Styles */
 .meals-table {
     width: 100%;
     border-collapse: collapse;
@@ -232,9 +195,24 @@ button {
 .meals-table th,
 .meals-table td {
     padding: 10px;
-    border: 1px solid #ddd;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
+.meals-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.meals-table td {
+    font-size: 16px;
+}
+
+.meals-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Stock Status Colors */
 .in-stock {
     color: green;
 }
