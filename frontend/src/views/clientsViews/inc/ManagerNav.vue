@@ -1,6 +1,11 @@
 <template>
     <nav class="navbar">
-        <h1>Restaurant Manager</h1>
+        <div class="name">
+            <div class="logo"><img src="@/assets/logo/chefIcon.png" alt=""></div>
+            <h1>Restaurant
+                <br>Manager
+            </h1>
+        </div>
         <button class="logout-button" @click="logout">Log Out</button>
     </nav>
 </template>
@@ -18,14 +23,31 @@ export default {
 </script>
 
 <style scoped>
+.name{
+    display: flex;
+}
+.logo img {
+    width: 100%;
+}
+
+.logo {
+    width: 10%;
+}
+
+.name h1 {
+    margin: 10px;
+    color: #000000;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 10px 20px;
-    /* background-color: #f44d43; */
+    background-color: #f44d43;
     color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 200px;
 }
 
 .logout-button {
