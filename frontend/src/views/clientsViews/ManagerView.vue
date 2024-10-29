@@ -19,7 +19,7 @@
         <!-- Display Section Content Based on Selected Section -->
         <div class="data">
           <div v-if="selectedSection === 'Sales'">
-            <p>Showing Sales Section</p>
+            <Sales />
           </div>
           <div v-if="selectedSection === 'Meals'">
             <Meals />
@@ -55,9 +55,10 @@ import promotionsIcon from '@/assets/managerPagePhotos/promo.png';
 import ordersIcon from '@/assets/managerPagePhotos/order.png';
 import Meals from './ManagerItems/Meals.vue';
 import Team from './ManagerItems/Team.vue';
+import Sales from './ManagerItems/Sales.vue';
 
 export default {
-  components: { NavBar, ManagerBox, SideBar, Meals, Team, AddProduct, },
+  components: { NavBar, ManagerBox, SideBar, Meals, Team, Sales, AddProduct, },
   data() {
     return {
       selectedSection: '', // Initialize selectedSection
