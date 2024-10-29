@@ -165,11 +165,16 @@ const submitForm = () => {
   
 
   // Check password requirements
-  if (
+  if ((
     passwordError.value.noLetter === 0 ||
     passwordError.value.noNumberOrSpecialChar === 0 ||
     passwordError.value.lessThan8 === 0
-  ) {
+  )||
+    passwordError.value.noLetter === -1 ||
+    passwordError.value.noNumberOrSpecialChar === -1 ||
+    passwordError.value.lessThan8 === -1
+) {
+    passwordError.value.noLetter = passwordError.value.noNumberOrSpecialChar = passwordError.value.lessThan8 = 0
     return;
   }
 
