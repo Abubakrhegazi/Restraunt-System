@@ -46,12 +46,13 @@
 <script setup>
 import CustomInput from '@/components/inc/CustomInput.vue';
 
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 import logo from '@/assets/logo/chefIcon.png';
 
-
-components: { CustomInput }
+onMounted(() => {
+  document.title = "Login - Rest.";
+})
 
 const email = ref('');
 const password = ref('');
@@ -96,7 +97,7 @@ const submitForm = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100dvh;
   background: linear-gradient(to bottom, #8b0000, #0c0c0c);
   padding: 20px;
 }
