@@ -31,10 +31,10 @@
             <p>Showing Screens Section</p>
           </div>
           <div v-if="selectedSection === 'Promotions'">
-            <p>Showing Promotions Section</p>
+            <Promotions />
           </div>
           <div v-if="selectedSection === 'Orders'">
-            <p>Showing Orders Section</p>
+            <Orders />
           </div>
         </div>
       </div>
@@ -56,9 +56,11 @@ import ordersIcon from '@/assets/managerPagePhotos/order.png';
 import Meals from './ManagerItems/Meals.vue';
 import Team from './ManagerItems/Team.vue';
 import Sales from './ManagerItems/Sales.vue';
+import Promotions from './ManagerItems/Promotions.vue';
+import Orders from './ManagerItems/Orders.vue';
 
 export default {
-  components: { NavBar, ManagerBox, SideBar, Meals, Team, Sales, AddProduct, },
+  components: { NavBar, ManagerBox, SideBar, Meals, Team, Sales, Promotions, Orders, AddProduct, },
   data() {
     return {
       selectedSection: '', // Initialize selectedSection
