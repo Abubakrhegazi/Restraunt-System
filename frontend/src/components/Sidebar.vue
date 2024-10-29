@@ -39,24 +39,24 @@ const menuItems = [
 
 .sidebar {
     width: 250px; 
-    background-color: #0c0c0c; /* Dark background */
-    color: #ffffff; /* White text color */
+    background-color: #0c0c0c; 
+    color: #ffffff; 
     display: flex;
     flex-direction: column;
     padding: 20px;
-    padding-left: 60px;
-    border-right: 2px solid #8b0000; /* Accent border color */
+    padding-left: 20px;
+    border-right: 2px solid #8b0000; 
     transition: width 0.3s ease;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-closed {
-    width: 60px; /* Collapsed width */
+    width: 60px; 
 }
 
 .toggle-button {
-    background-color: #8b0000; /* Dark red background */
+    background-color: #8b0000;
     border: none;
     border-radius: 8px;
     color: #ffffff;
@@ -71,8 +71,7 @@ const menuItems = [
 }
 
 .toggle-button:hover {
-    background-color: #600000; /* Darker red on hover */
-    transform: scale(1.05);
+    background-color: #600000; 
 }
 
 .menu {
@@ -85,7 +84,7 @@ const menuItems = [
     align-items: center;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: #1a1a1a; /* Slightly lighter for contrast */
+    background-color: #1a1a1a; 
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -112,3 +111,4 @@ const menuItems = [
     font-weight: 500;
 }
 </style>
+
