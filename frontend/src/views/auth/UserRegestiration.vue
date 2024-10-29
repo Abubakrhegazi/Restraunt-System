@@ -76,11 +76,14 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import CustomInput from '@/components/inc/CustomInput.vue';
 import logo from '@/assets/logo/chefIcon.png';
 
+onMounted(() => {
+  document.title = "Signup - Rest.";
+})
 
 const email = ref('');
 const password = ref('');
