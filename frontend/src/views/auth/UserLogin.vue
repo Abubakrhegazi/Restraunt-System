@@ -96,7 +96,7 @@ const submitForm = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100dvh;
   background: linear-gradient(to bottom, #8b0000, #0c0c0c);
   padding: 20px;
 }

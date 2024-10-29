@@ -50,7 +50,7 @@ export default {
   font-size: 16px; 
   outline: none; 
   width: 100%;
-  min-width: 350px;
+  /* min-width: 350px; */
   transition: border-color 0.3s; 
 }
 
