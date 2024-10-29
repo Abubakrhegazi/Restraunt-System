@@ -28,7 +28,7 @@
             <Team />
           </div>
           <div v-if="selectedSection === 'Screens'">
-            <p>Showing Screens Section</p>
+            <Screens />
           </div>
           <div v-if="selectedSection === 'Promotions'">
             <Promotions />
@@ -46,7 +46,7 @@
 import NavBar from './inc/ManagerNav.vue';
 import SideBar from './inc/ManagerSide.vue';
 import ManagerBox from './inc/ManagerBox.vue';
-import AddProduct from './inc/AddProduct.vue';
+import AddItemTemplate from './inc/AddItemTemplate.vue';
 import salesIcon from '@/assets/managerPagePhotos/piechart.png';
 import mealsIcon from '@/assets/managerPagePhotos/food.png';
 import teamIcon from '@/assets/managerPagePhotos/team.png';
@@ -58,9 +58,10 @@ import Team from './ManagerItems/Team.vue';
 import Sales from './ManagerItems/Sales.vue';
 import Promotions from './ManagerItems/Promotions.vue';
 import Orders from './ManagerItems/Orders.vue';
+import Screens from './ManagerItems/Screens.vue';
 
 export default {
-  components: { NavBar, ManagerBox, SideBar, Meals, Team, Sales, Promotions, Orders, AddProduct, },
+  components: { NavBar, ManagerBox, SideBar, Meals, Team, Sales, Promotions, Orders, Screens, AddItemTemplate, },
   data() {
     return {
       selectedSection: '', // Initialize selectedSection
@@ -127,32 +128,8 @@ export default {
 
 .data {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
-
-
-/* .meals-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.meals-table th,
-.meals-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.meals-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.meals-table th {
-  background-color: #e0e0e0;
-  color: #333;
-  font-weight: bold;
-} */
 </style>

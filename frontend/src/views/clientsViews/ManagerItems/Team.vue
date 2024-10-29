@@ -9,7 +9,7 @@
         <!-- Add/Import/Export buttons -->
         <div v-if="selectedTab === 'team'" class="team-content">
             <div class="actions">
-                <button @click="addMember">Add Member</button>
+                <AddItemTemplate itemType="Team Member" :fields="['name', 'role', 'status', 'shift']" />
                 <button @click="importTeam">Import</button>
                 <button @click="exportTeam">Export</button>
             </div>
@@ -84,7 +84,9 @@
 </template>
 
 <script>
+import AddItemTemplate from '../inc/AddItemTemplate.vue';
 export default {
+    components: { AddItemTemplate },
     data() {
         return {
             selectedTab: 'team',

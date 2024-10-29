@@ -10,7 +10,8 @@
         <!-- Add/Import/Export buttons -->
         <div v-if="selectedTab === 'meals'" class="meals-content">
             <div class="actions">
-                <AddProduct />
+                <AddItemTemplate itemType="Meal" :fields="['name', 'category', 'price']"
+                    :categories="['Burger', 'Salad', 'Drink']" />
                 <button @click="importMeals">Import</button>
                 <button @click="exportMeals">Export</button>
             </div>
@@ -74,10 +75,10 @@
 </template>
 
 <script>
-import AddProduct from '../inc/AddProduct.vue';
+import AddItemTemplate from '../inc/AddItemTemplate.vue';
 
 export default {
-    components: { AddProduct },
+    components: { AddItemTemplate },
     data() {
         return {
             selectedTab: 'meals',

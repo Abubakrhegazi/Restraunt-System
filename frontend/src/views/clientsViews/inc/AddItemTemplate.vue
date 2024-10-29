@@ -1,30 +1,22 @@
 <template>
     <div>
-        <button @click="openPopup" class="btn-submit">Add Product</button>
+        <button @click="openPopup" class="btn-submit">Add {{ itemType }}</button>
 
         <div v-if="isPopupVisible" class="popup">
             <div class="popup-content">
-                <h2>Add a Product</h2>
-                <form @submit.prevent="addProduct">
-                    <div class="input-group">
-                        <label for="productName">Product Name</label>
-                        <input type="text" id="productName" v-model="productName" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="category">Category</label>
-                        <select v-model="category" required>
+                <h2>Add a {{ itemType }}</h2>
+                <form @submit.prevent="addItem">
+                    <!-- Dynamic fields based on itemType -->
+                    <div v-for="(field, index) in fields" :key="index" class="input-group">
+                        <label :for="field">{{ formatLabel(field) }}</label>
+                        <input v-if="field !== 'category'" type="text" :id="field" v-model="formData[field]" required />
+                        <select v-if="field === 'category'" v-model="formData.category" required>
                             <option v-for="category in categories" :key="category" :value="category">{{ category }}
                             </option>
                         </select>
                     </div>
 
-                    <div class="input-group">
-                        <label for="price">Price</label>
-                        <input type="number" id="price" v-model="price" required>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Add Product</button>
+                    <button type="submit" class="btn-submit">Add {{ itemType }}</button>
                 </form>
                 <button @click="closePopup" class="close-btn">Close</button>
             </div>
@@ -34,13 +26,18 @@
 
 <script>
 export default {
+    props: {
+        itemType: String,
+        fields: Array,
+        categories: Array,
+    },
     data() {
         return {
             isPopupVisible: false,
-            productName: "",
-            category: "",
-            price: null,
-            categories: ['Burger', 'Pasta', 'Salad']  // Example categories
+            formData: this.fields.reduce((acc, field) => {
+                acc[field] = ""; // Initialize fields with empty values
+                return acc;
+            }, {}),
         };
     },
     methods: {
@@ -50,12 +47,15 @@ export default {
         closePopup() {
             this.isPopupVisible = false;
         },
-        addProduct() {
-            // Logic to handle adding the product
-            console.log(`Product Added: ${this.productName}, ${this.category}, ${this.price}`);
+        addItem() {
+            // Handle adding the item with formData values
+            console.log(`Added ${this.itemType}:`, this.formData);
             this.closePopup();
+        },
+        formatLabel(field) {
+            return field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1");
         }
-    }
+    },
 };
 </script>
 
