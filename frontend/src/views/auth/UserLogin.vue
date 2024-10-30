@@ -99,6 +99,7 @@ const submitForm = () => {
   align-items: center;
   height: 100dvh;
   background: linear-gradient(to bottom, #8b0000, #0c0c0c);
+  background: linear-gradient(135deg, #f9e8b2, #e8a958);
   padding: 20px;
 }
 
@@ -110,7 +111,7 @@ const submitForm = () => {
   gap: 0px;
   padding: 50px;
   padding-top: 10px;
-  padding-bottom: 4px;
+  padding-bottom :35px;
 
   background-color: #ffffff;
   border-radius: 20px;
