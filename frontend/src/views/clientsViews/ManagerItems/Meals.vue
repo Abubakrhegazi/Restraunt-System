@@ -77,7 +77,7 @@
 <script>
 import AddItemTemplate from '../inc/AddItemTemplate.vue';
 
-import getMealsByResturantId from '@/api/mealApi';
+import { getMealsByResturantId, deleteMeals } from '@/api/mealApi';
 
 export default {
     components: { AddItemTemplate },
@@ -116,6 +116,11 @@ export default {
         },
         applyBulkAction() {
             if (this.selectedBulkAction === 'delete') {
+                console.log(this.meals)
+                this.meals.forEach(async (meal) => {
+                    console.log(meal);
+                    await deleteMeals(meal.name, meal.meal_id); // Await each deleteMeals call
+                });
                 this.meals = this.meals.filter(meal => !meal.selected);
             }
         },
@@ -127,11 +132,12 @@ export default {
             });
         },
     },
-    mounted(){
+    mounted() {
         const getMeals = async () => {
             const response = await getMealsByResturantId(0)
-            if(response.status === "success"){
+            if (response) {
                 console.log('Successful');
+                console.log(response);
                 this.meals = response.map(meal => ({
                     id: meal.meal_id, // Use meal_id from API response
                     name: meal.name,
@@ -141,12 +147,12 @@ export default {
                     description: meal.description, // Include description if needed
                     ingredients: meal.ingredients, // Include ingredients if needed
                 }));
-            }else{
-                console.error(response.status);
+            } else {
+                console.error(response);
             }
         }
-        
-    getMeals()
+
+        getMeals()
     }
 
 };

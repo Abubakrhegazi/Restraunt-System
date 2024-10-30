@@ -3,6 +3,9 @@ header("Access-Control-Allow-Origin: http://localhost:8080"); // Allow requests 
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");    // Allow the request methods you use
 header("Access-Control-Allow-Headers: Content-Type");          // Allow the headers you need
 header("Access-Control-Allow-Credentials: true");              // If cookies or authentication are required
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header('Content-Type: application/json'); // Set content type to JSON
 
 require_once '../models/meal_functions.php';  // Assuming this file contains meal-related DB functions
@@ -56,6 +59,7 @@ if($action){
             }
             break;
 
+
         // case 'updateMeal':
         //     $id = $_POST['id'] ?? '';
         //     $name = $_POST['name'] ?? '';
@@ -70,15 +74,17 @@ if($action){
         //     }
         //     break;
 
-        // case 'deleteMeal':
-        //     $id = $_POST['id'] ?? '';
+        case 'deleteMealByMealNameAndRsturantId':
+            $id = $_POST['id'] ?? '';
+            $id = $_POST['name'] ?? '';
 
-        //     if (deleteMeal($id)) {
-        //         echo json_encode(["status" => "success", "message" => "Meal deleted successfully."]);
-        //     } else {
-        //         echo json_encode(["status" => "error", "message" => "Failed to delete meal."]);
-        //     }
-        //     break;
+
+            if (deleteMealByMealNameAndRsturantId($name,$id)) {
+                echo json_encode(["status" => "success", "message" => "Meal deleted successfully."]);
+            } else {
+                echo json_encode(["status" => "error", "message" => "Failed to delete meal."]);
+            }
+            break;
 
         default:
             echo json_encode(["status" => "error", "message" => "Invalid action."]);
