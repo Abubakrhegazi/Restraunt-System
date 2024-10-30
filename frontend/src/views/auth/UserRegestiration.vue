@@ -250,10 +250,9 @@ if (response.status === "success") {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  padding-inline: 40px;
-  padding-bottom: 15px;
-  padding-top: 10px;
+  gap: 0px;
+  padding-inline: 20px;
+  margin: 10px;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
@@ -266,7 +265,7 @@ if (response.status === "success") {
   font-family: 'Roboto', sans-serif;
   font-size: 28px;
   color: #8b0000;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .title h3 {
@@ -380,7 +379,7 @@ if (response.status === "success") {
   align-items: flex-start;
   flex-direction: column;
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 0.8rem;
 }
 
@@ -416,6 +415,7 @@ if (response.status === "success") {
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+  font-size: 12px;
 
 }
 
@@ -459,6 +459,7 @@ if (response.status === "success") {
   }
 
   .name {
+    margin-left: 10px;
     display: block;
     min-width: 350px;
   }

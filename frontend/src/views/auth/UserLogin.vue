@@ -108,7 +108,7 @@ const submitForm = () => {
   justify-content: flex-start;
   align-items: flex-start;
   gap: 0px;
-  padding: 30px;
+  padding: 50px;
   padding-top: 10px;
   padding-bottom: 4px;
 
@@ -116,12 +116,14 @@ const submitForm = () => {
   border-radius: 20px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   max-width: 400px;
+  max-height: 560px;
   width: 100%;
 }
 
 .login-box {
   display: flex;
   padding: 0;
+  margin-top: 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -234,7 +236,7 @@ button:hover {
   padding-block: 5px;
   font-size: 17px;
   border-radius: 13px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .other a:hover{
@@ -278,7 +280,8 @@ button:hover {
 
     .container-login {
       width: 90vw;
-      height: 100vh;
+      height: 100dvh;
+      max-height: none;
       border-radius: 0;
       padding-top: 0;
       padding: 30px;
