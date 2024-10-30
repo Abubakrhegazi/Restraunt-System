@@ -1,42 +1,65 @@
 <?php
-require_once 'db.php';
 
-function getUserById($id) {
-    global $mysqli;
-    $stmt = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->fetch_assoc();
+// Include the database connection
+require_once '../config/db.php';
+
+
+// Function to add a new user securely
+function addUser($username, $email, $password, $role, $phoneNumber)
+{
+    global $con;
+    $sql = "INSERT INTO users (name, email, password, role, phone_number) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "ssssi", $username, $email, $password, $role, $phoneNumber); // "ssss" means 4 strings
+    return mysqli_stmt_execute($stmt);
 }
 
-function getUserByEmail($email) {
-    global $mysqli;
-    $stmt = $mysqli->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    return $result->fetch_assoc();
+// Function to get a user by their ID securely
+function getUserById($userId)
+{
+    global $con;
+    $sql = "SELECT * FROM users WHERE id = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $userId); // "i" means integer
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_assoc($result);
 }
 
-function createUser($name, $email, $password, $role_id) {
-    global $mysqli;
-    $stmt = $mysqli->prepare("INSERT INTO users (name, email, password, role_id) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("sssi", $name, $email, $password, $role_id);
-    return $stmt->execute();
+// Function to update a user's details securely
+function updateUser($userId, $username, $email, $role)
+{
+    global $con;
+    $sql = "UPDATE users SET name = ?, email = ?, role = ? WHERE id = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "sssi", $username, $email, $role, $userId);
+    return mysqli_stmt_execute($stmt);
 }
 
-function updateUser($id, $name, $email, $role_id) {
-    global $mysqli;
-    $stmt = $mysqli->prepare("UPDATE users SET name = ?, email = ?, role_id = ? WHERE id = ?");
-    $stmt->bind_param("ssii", $name, $email, $role_id, $id);
-    return $stmt->execute();
+// Function to delete a user by ID securely
+function deleteUser($userId)
+{
+    global $con;
+    $sql = "DELETE FROM users WHERE id = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $userId);
+    return mysqli_stmt_execute($stmt);
 }
 
-function deleteUser($id) {
-    global $mysqli;
-    $stmt = $mysqli->prepare("DELETE FROM users WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    return $stmt->execute();
+// Function to retrieve all users securely
+function getAllUsers()
+{
+    global $con;
+    $sql = "SELECT * FROM users";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $users = [];
+    while ($user = mysqli_fetch_assoc($result)) {
+        $users[] = $user;
+    }
+    return $users;
 }
+
+
 ?>

@@ -5,20 +5,20 @@ $username = "root";
 $password = "";
 $database = "resturant_software_db";
 
-$conn = mysqli_connect($host, $username ,$password, $database);
+$con = mysqli_connect($host, $username ,$password, $database);
 
-if(!$conn){
+if(!$con){
 
     die("Connection failed" . mysqli_connect_error());
 
 } else {
-//       echo "Connected";
+    //echo "Connected successfully";
 }
 
 function check_query($result){
-    global $conn;
+    global $con;
     if(!$result){
-        return "Error" . mysqli_error($conn);
+        return "Error" . mysqli_error($con);
     }
     return true;
 }

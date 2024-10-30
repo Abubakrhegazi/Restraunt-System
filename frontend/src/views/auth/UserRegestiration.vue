@@ -9,7 +9,7 @@
         <h3 v-if="step === 2">Finish your account</h3>
       </div>
 
-      <form @submit.prevent="submitForm" novalidate>
+      <form @submit.prevent="submitForm" method="POST" novalidate>
 
         <!-- Step 1 -->
         <div v-if="step === 1">
@@ -78,8 +78,15 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+
 import CustomInput from '@/components/inc/CustomInput.vue';
+
 import logo from '@/assets/logo/chefIcon.png';
+
+import createUser from '@/api/userApi';
+
+
+
 
 onMounted(() => {
   document.title = "Signup - Rest.";
@@ -103,6 +110,8 @@ const passwordError = ref({
 });
 const terms = ref(true)
 const step = ref(1);
+
+
 
 
 const router = useRouter();
@@ -163,7 +172,9 @@ const onClickBack = () => {
   step.value--;
 }
 
-const submitForm = () => {
+
+
+const submitForm = async () => {
   nameError.value.firstName = nameError.value.lastName = ''
   
 
@@ -202,8 +213,23 @@ const submitForm = () => {
      return
   } 
 
+  const userData = {
+    name: `${firstName.value} ${lastName.value}`,
+    email: email.value,
+    password: password.value,
+    role:  'owner',
+    phoneNumber: phoneNumber.value
+
+};
+
+  const response = await createUser(userData);
+
+if (response.status === "success") {
   console.log('Registration Successful');
-  router.push('/login'); 
+  router.push('/login');
+} else {
+  console.error(response.message);
+}
 };
 
 </script>
