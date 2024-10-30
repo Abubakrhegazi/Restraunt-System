@@ -266,6 +266,7 @@ if (response.status === "success") {
   font-family: 'Roboto', sans-serif;
   font-size: 28px;
   color: #8b0000;
+  color: #212121;
   margin-bottom: 10px;
 }
 
