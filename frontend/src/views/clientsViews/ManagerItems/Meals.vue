@@ -61,7 +61,7 @@
                             {{ meal.inStock ? 'In stock' : 'Out of stock' }}
                         </td>
                         <td>{{ meal.price }}</td>
-                        <td>{{ meal.categories.join(', ') }}</td>
+                        <td>{{ meal.categories }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -77,6 +77,8 @@
 <script>
 import AddItemTemplate from '../inc/AddItemTemplate.vue';
 
+import getMealsByResturantId from '@/api/mealApi';
+
 export default {
     components: { AddItemTemplate },
     data() {
@@ -88,12 +90,7 @@ export default {
             selectedStockStatus: '',
             searchQuery: '',
             selectAll: false,
-            meals: [
-                { id: 1, name: 'Soup', inStock: true, price: '$10.00', categories: ['Category 1', 'Category 2'] },
-                { id: 2, name: 'Coffee', inStock: false, price: '$2.30', categories: ['Category 3'] },
-                { id: 3, name: 'Pasta', inStock: true, price: '$32.00', categories: ['Category 5'] },
-                { id: 4, name: 'Burger', inStock: true, price: '$45.00', categories: ['Category 4'] },
-            ],
+            meals: [],
         };
     },
     computed: {
@@ -130,6 +127,28 @@ export default {
             });
         },
     },
+    mounted(){
+        const getMeals = async () => {
+            const response = await getMealsByResturantId(0)
+            if(response.status === "success"){
+                console.log('Successful');
+                this.meals = response.map(meal => ({
+                    id: meal.meal_id, // Use meal_id from API response
+                    name: meal.name,
+                    inStock: meal.availiability === 1, // Convert availability to boolean
+                    price: `${meal.price}$`, // Format price
+                    categories: meal.category, // Use category from API response
+                    description: meal.description, // Include description if needed
+                    ingredients: meal.ingredients, // Include ingredients if needed
+                }));
+            }else{
+                console.error(response.status);
+            }
+        }
+        
+    getMeals()
+    }
+
 };
 </script>
 

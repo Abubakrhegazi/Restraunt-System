@@ -1,5 +1,5 @@
 export default async function createUser(userData) {
-    const response = await fetch('http://localhost/resturant-software/backend/src/routes/api.php', {
+    const response = await fetch('http://localhost/resturant-software/backend/src/controllers/UserController.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
