@@ -39,13 +39,13 @@ const menuItems = [
 
 .sidebar {
     width: 250px; 
-    background-color: #0c0c0c; 
+    background: linear-gradient(135deg, #f9e8b2, #e8a958);
     color: #ffffff; 
     display: flex;
     flex-direction: column;
     padding: 20px;
     padding-left: 20px;
-    border-right: 2px solid #8b0000; 
+    border-right: 2px solid #000000; 
     transition: width 0.3s ease;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -56,7 +56,7 @@ const menuItems = [
 }
 
 .toggle-button {
-    background-color: #8b0000;
+    background-color: #000000;
     border: none;
     border-radius: 8px;
     color: #ffffff;
@@ -71,7 +71,7 @@ const menuItems = [
 }
 
 .toggle-button:hover {
-    background-color: #600000; 
+    background-color: #000000; 
 }
 
 .menu {
@@ -84,8 +84,8 @@ const menuItems = [
     align-items: center;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: #1a1a1a; 
-    color: #ffffff;
+    background-color: white; 
+    color: black;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -94,12 +94,12 @@ const menuItems = [
 }
 
 .menu button:hover {
-    background-color: #8b0000;
+    background-color: #e0d2d2;
     transform: translateY(-2px);
 }
 
 .menu button.active {
-    background-color: #8b0000; 
+    background-color: #e4d6d6; 
     border-radius: 8px;
 }
 

@@ -88,7 +88,7 @@
   .employee-profile-view {
     display: flex;
     height: 100vh;
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #f9e8b2, #e8a958);
     font-family: 'Roboto', sans-serif;
   }
   
@@ -114,6 +114,8 @@
   
   .profile-header {
     margin-bottom: 20px;
+    color: rgb(0, 0, 0);
   }
+ 
   </style>
   

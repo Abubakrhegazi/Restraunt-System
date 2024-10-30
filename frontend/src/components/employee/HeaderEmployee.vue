@@ -40,7 +40,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: #0a0a0a;
+    background: white;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;

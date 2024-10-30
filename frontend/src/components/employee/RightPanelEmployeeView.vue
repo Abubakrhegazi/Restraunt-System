@@ -32,7 +32,7 @@
   <style scoped>
   .right-panel {
     flex: 1;
-    background: linear-gradient(to bottom, #8b0000, #363232);
+    background: white;
     padding: 20px;
     border-radius: 8px;
     color: #ffffff;
@@ -42,20 +42,20 @@
   }
   
   .basic-info {
-    color: #ffffff;
+    color: #000000;
     padding: 10px;
   }
   
   .basic-info h3 {
     font-size: 1.5rem;
-    color: #333333;
+    color: #000000;
     margin: 0;
     margin-bottom: 30px;
     display: flex;
   }
   
   .edit-button {
-    background-color: #8b0000;
+    background-color: #000000;
     color: #ffffff;
     border: none;
     border-radius: 8px;

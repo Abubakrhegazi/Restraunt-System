@@ -35,7 +35,7 @@
   
   <style scoped>
   .left-panel {
-    background: linear-gradient(to bottom, #8b0000, #363232);
+    background:white;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -46,16 +46,16 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 4px solid #8b0000;
+    border: 4px solid #000000;
     margin-bottom: 15px;
   }
   
   .employee-name {
-    color: #ddd6d6;
+    color: #000000;
   }
   
   .employee-title {
-    color: #d8cccc;
+    color: #000000;
   }
   
   .employee-details {
@@ -71,12 +71,12 @@
   
   .employee-details p {
     margin: 0;
-    color: #f7f7f7;
+    color: #000000;
     font-size: 0.9rem;
   }
   
   .employee-details a {
-    color: #007bff;
+    color: #000000;
     text-decoration: none;
   }
   
