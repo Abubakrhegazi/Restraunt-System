@@ -16,12 +16,10 @@
 export default {
     methods: {
         goToCashier() {
-            // Route to Cashier Screen
-            this.$router.push({ name: 'cashier' }); // Adjust the route name as per your router configuration
+            this.$router.push({ name: 'cashier' }); 
         },
         goToChef() {
-            // Route to Chef's Screen
-            this.$router.push({ name: 'chef' }); // Adjust the route name as per your router configuration
+            this.$router.push({ name: 'chef' }); 
         },
     },
 };
@@ -45,7 +43,6 @@ h2 {
     display: flex;
     justify-content: center;
     gap: 20px;
-    /* Space between options */
 }
 
 .screen-option {
@@ -56,7 +53,6 @@ h2 {
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
     width: 150px;
-    /* Fixed width for the options */
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

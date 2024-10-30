@@ -15,7 +15,6 @@ export default {
     name: 'NavBar',
     methods: {
         logout() {
-            // You can add logic for log out, for now it just alerts
             alert('Logging out...');
         },
     },
@@ -24,9 +23,6 @@ export default {
 
 <style scoped>
 .navbar {
-    background: linear-gradient(90deg, #4caf50, #009688);
-    /* background: linear-gradient(90deg, #8bc34a, #388e3c); */
-    background: linear-gradient(135deg, #f9e8b2, #f1c27d);
     background: linear-gradient(135deg, #f9e8b2, #e8a958);
 }
 

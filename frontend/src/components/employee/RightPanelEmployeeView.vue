@@ -75,8 +75,8 @@
   
   .info-grid {
     display: grid;
-    grid-template-columns: auto auto; /* Two columns for labels and values */
-    gap: 40px 60px; /* Space between rows and columns */
+    grid-template-columns: auto auto;
+    gap: 40px 60px;
     margin-top: 20px;
   }
   

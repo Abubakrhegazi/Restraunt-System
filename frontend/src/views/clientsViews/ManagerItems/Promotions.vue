@@ -130,9 +130,7 @@ export default {
 .promotions-section {
     padding: 20px;
     background-color: #f9f9f9;
-    /* Light background for the section */
     border-radius: 10px;
-    /* Rounded corners */
 }
 
 .tabs {
@@ -144,21 +142,16 @@ export default {
 .tabs button {
     padding: 10px 15px;
     border: 1px solid #ccc;
-    /* Border for tabs */
     background-color: #fff;
-    /* Background for tabs */
     cursor: pointer;
     border-radius: 5px;
-    /* Rounded corners */
     transition: background-color 0.3s ease, border-color 0.3s ease;
-    /* Smooth transition */
 }
 
 .tabs button.active {
     background-color: #2980b9;
     color: white;
     border-color: #2980b9;
-    /* Highlight border for active tab */
 }
 
 .actions,
@@ -172,50 +165,39 @@ export default {
 .filters button {
     padding: 8px 12px;
     border: 1px solid #2980b9;
-    /* Border for action buttons */
     background-color: #2980b9;
-    /* Button color */
     color: white;
     border-radius: 5px;
-    /* Rounded buttons */
     cursor: pointer;
     transition: background-color 0.3s ease;
-    /* Smooth transition */
 }
 
 .actions button:hover,
 .filters button:hover {
     background-color: #45a049;
-    /* Darker green on hover */
 }
 
 .filters select,
 .filters input {
     padding: 8px;
     border: 1px solid #ccc;
-    /* Light border for inputs */
     border-radius: 5px;
-    /* Rounded corners */
 }
 
 .promotions-table {
     width: 100%;
     border-collapse: collapse;
-    /* Collapse table borders */
 }
 
 .promotions-table th,
 .promotions-table td {
     padding: 10px;
     border: 1px solid #ddd;
-    /* Light border for table cells */
     text-align: left;
-    /* Left align text */
 }
 
 .promotions-table th {
     background-color: #f0f0f0;
-    /* Light grey background for headers */
 }
 
 .edit-button,
@@ -224,29 +206,24 @@ export default {
     margin-right: 5px;
     border: none;
     border-radius: 5px;
-    /* Rounded buttons */
     cursor: pointer;
 }
 
 .edit-button {
     background-color: #2196f3;
-    /* Blue for edit button */
     color: white;
 }
 
 .delete-button {
     background-color: #f44336;
-    /* Red for delete button */
     color: white;
 }
 
 .edit-button:hover {
     background-color: #1976d2;
-    /* Darker blue on hover */
 }
 
 .delete-button:hover {
     background-color: #d32f2f;
-    /* Darker red on hover */
 }
 </style>

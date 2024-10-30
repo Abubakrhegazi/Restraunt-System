@@ -30,9 +30,9 @@
           </div>
 
           <div class="total">
-            <p>Total: ${{ calculateTotal() }}</p>
-            <p>Taxes: ${{ calculateTax() }}</p>
-            <p><strong>Total with Tax: ${{ calculateTotalWithTax() }}</strong></p>
+            <p>Subtotal: ${{ calculateTotal() }}</p>
+            <p>Tax: ${{ calculateTax() }}</p>
+            <p><strong>Total: ${{ calculateTotalWithTax() }}</strong></p>
             <button @click="processPayment" class="checkout">Check Out</button>
           </div>
         </div>
@@ -52,9 +52,11 @@
             <button @click="addToOrder(item)">Add +</button>
           </div>
         </div>
+
       </div>
       <Sidebar :isSidebarOpen="isSidebarOpen" :activeTab="activeTab" @toggleSidebar="toggleSidebar"
         @setActiveTab="setActiveTab" />
+
 
     </div>
   </div>
@@ -84,12 +86,12 @@ export default {
         { name: "Caesar Salad", price: 5.00, category: "Appetizers", image: require("@/assets/food/image3.jpeg") },
         { name: "Chocolate Cake", price: 4.50, category: "Desserts", image: require("@/assets/food/images (6).jpeg") },
       ],
-      order: [], // Initialize the order array here
+      order: [], 
       promoCode: '',
       promoError: '',
       taxRate: 0.14,
       selectedCategory: 'All',
-      isSidebarOpen: true, // default to open or closed
+      isSidebarOpen: true, 
       activeTab: 'all',
     };
   },
@@ -103,6 +105,10 @@ export default {
     }
   },
   methods: {
+    setActiveTab(tab) {
+      this.selectedCategory = tab; 
+      this.activeTab = tab;
+    },
     addToOrder(item) {
       const existingItem = this.order.find(i => i.name === item.name);
       if (existingItem) {
@@ -134,14 +140,12 @@ export default {
       return (parseFloat(this.calculateTotal()) + parseFloat(this.calculateTax())).toFixed(2);
     },
     applyPromoCode() {
-      // Example of a valid promo code
       const validPromoCode = 'DISCOUNT10';
 
-      // Check if the entered promo code is valid
       if (this.promoCode === validPromoCode) {
         alert('Promo code applied successfully! You get a 10% discount.');
       } else {
-        this.promoError =  'Invalid promo code';
+        this.promoError = 'Invalid promo code';
 
       }
     },
@@ -150,17 +154,14 @@ export default {
       this.order = [];
     },
     filterItems(category) {
-      this.selectedCategory = category; // Set the selected category
+      this.selectedCategory = category; 
     },
     goToIndex() {
-      this.$router.push('/index');
+      this.$router.push('/');
     },
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen;
     },
-    setActiveTab(tab) {
-      this.activeTab = tab;
-    }
   }
 };
 </script>
@@ -171,7 +172,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  background-color: #2c2c2c;
+  background: linear-gradient(135deg, #f9e8b2, #e8a958);
   color: #f0f0f0;
 }
 
@@ -179,7 +180,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
+  background-color: none;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -188,14 +189,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  /* Align items to the left */
   gap: 10px;
-  /* Add space between items */
 }
 
 .promo-input,
 .promo-button {
-  width: 100%;
+  width: 175px;
+  margin: 0 auto;
   margin-bottom: 5px;
 }
 
@@ -232,7 +232,9 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-
+.order-summary{
+  color: #212121;
+}
 .categories-section {
   width: 100%;
   margin-bottom: 20px;
@@ -269,17 +271,18 @@ export default {
   background-color: #8b0000;
 }
 
-.logo{
+.logo {
   display: flex;
 }
+
 .logo img {
   height: 50px;
 }
 
-.logo p{
+.logo p {
   font-size: 1.5em;
-    margin: 0 auto;
-    color: #0c0c0c;
+  margin: 0 auto;
+  color: #0c0c0c;
 }
 
 .index-button {
@@ -299,9 +302,8 @@ export default {
 .cashier {
   display: flex;
   flex: 1;
-  background-color: #333;
+  background: linear-gradient(135deg, #f9e8b2, #e8a958);
   padding: 30px;
-  border-radius: 8px;
   margin-bottom: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -348,6 +350,7 @@ export default {
 
 .total {
   margin-top: 20px;
+  color: #212121;
 }
 
 .total p {
@@ -365,16 +368,15 @@ export default {
 .food-menu {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  /* Default to 6 items per row */
-  gap: 20px;
-  width: 100%;
+  gap: 10px;
+  width: 85%;
   padding: 10px;
 }
 
 .food-menu-title h1 {
   font-size: 36px;
   font-family: 'Georgia', serif;
-  color: #f8f0e3;
+  color: #212121;
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 20px;
@@ -385,14 +387,16 @@ export default {
 }
 
 .food-item {
-  background-color: #333;
+  background-color: #f0c885;
   padding: 10px;
   border-radius: 8px;
   text-align: center;
-  margin: 15px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   max-width: 120px;
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .food-item:hover {
@@ -400,8 +404,9 @@ export default {
 }
 
 .food-item img {
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 110px;
+  border-radius: 6px;
 }
 
 .payment-section {
@@ -411,13 +416,13 @@ export default {
 
 .food-item h3 {
   font-size: 16px;
-  color: #f8f0e3;
+  color: #212121;
   margin: 10px 0;
 }
 
 .food-item p {
   font-size: 14px;
-  color: #d4af37;
+  color: #212121;
   margin: 5px 0;
 }
 

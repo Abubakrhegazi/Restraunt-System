@@ -194,13 +194,13 @@ button:hover {
     justify-content: center;
     text-align: flex-start;
     width: 100%;
-    margin: 20px 0; /* Adjust the spacing as needed */
+    margin: 20px 0;
 }
 
 .separator div{
   display: block;
   min-width: 180px;
-  height: 1px; /* Set the thickness */
+  height: 1px;
   background: #aaa;
 }
 

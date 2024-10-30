@@ -1,11 +1,10 @@
 <template>
     <div class="sidebar" :class="{ 'sidebar-closed': !isSidebarOpen }">
-        <button class="toggle-button" @click="$emit('toggleSidebar')" aria-label="Toggle Sidebar">
-            <i :class="isSidebarOpen ? 'fas fa-angle-right' : 'fas fa-angle-left'"></i>
+        <button class="toggle-button" @click="toggleSidebar" aria-label="Toggle Sidebar">
+            <i :class="isSidebarOpen ? 'fas fa-angle-left' : 'fas fa-angle-right'"></i>
         </button>
-
         <div class="menu">
-            <button v-for="(item, index) in menuItems" :key="index" @click="$emit('setActiveTab', item.name)"
+            <button v-for="(item, index) in menuItems" :key="index" @click="filterCategory(item.name)"
                 :class="{ active: activeTab === item.name }">
                 <i :class="item.icon"></i>
                 <span v-if="isSidebarOpen">{{ item.label }}</span>
@@ -16,21 +15,36 @@
 
 <script>
 export default {
-    name: 'SideBar',
+    name: 'Sidebar',
     props: {
-        isSidebarOpen: true,
-        activeTab: 'all',
+        isSidebarOpen: {
+            type: Boolean,
+            default: true
+        },
+        activeTab: {
+            type: String,
+            default: 'all'
+        }
     },
     data() {
         return {
             menuItems: [
-                { name: 'all', label: 'All', icon: 'fas fa-utensils' },
-                { name: 'mainDishes', label: 'Main Dishes', icon: 'fas fa-drumstick-bite' },
-                { name: 'appetizers', label: 'Appetizers', icon: 'fas fa-pepper-hot' },
-                { name: 'desserts', label: 'Desserts', icon: 'fas fa-ice-cream' },
-                { name: 'drinks', label: 'Drinks', icon: 'fas fa-coffee' }
+                { name: 'All', label: 'All', icon: 'fas fa-utensils' },
+                { name: 'Main Dishes', label: 'Main Dishes', icon: 'fas fa-drumstick-bite' },
+                { name: 'Appetizers', label: 'Appetizers', icon: 'fas fa-pepper-hot' },
+                { name: 'Desserts', label: 'Desserts', icon: 'fas fa-ice-cream' },
+                { name: 'Drinks', label: 'Drinks', icon: 'fas fa-coffee' }
             ]
         };
+    },
+    methods: {
+        filterCategory(category) {
+            console.log("Emitting category:", category);
+            this.$emit('setActiveTab', category);
+        },
+        toggleSidebar() {
+            this.$emit('toggleSidebar');
+        }
     }
 };
 </script>
@@ -38,16 +52,13 @@ export default {
 <style scoped>
 .sidebar {
     width: 250px;
-    background-color: #0c0c0c;
-    /* Dark background */
-    color: #ffffff;
-    /* White text color */
+    background-color: #f0c374e5;
+    color: #8b0000;
     display: flex;
     flex-direction: column;
     padding: 20px;
     padding-left: 60px;
     border-right: 2px solid #8b0000;
-    /* Accent border color */
     transition: width 0.3s ease;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -55,12 +66,10 @@ export default {
 
 .sidebar-closed {
     width: 60px;
-    /* Collapsed width */
 }
 
 .toggle-button {
     background-color: #8b0000;
-    /* Dark red background */
     border: none;
     border-radius: 8px;
     color: #ffffff;
@@ -76,7 +85,6 @@ export default {
 
 .toggle-button:hover {
     background-color: #600000;
-    /* Darker red on hover */
     transform: scale(1.05);
 }
 
@@ -90,9 +98,8 @@ export default {
     align-items: center;
     padding: 15px;
     margin-bottom: 10px;
-    background-color: #1a1a1a;
-    /* Slightly lighter for contrast */
-    color: #ffffff;
+    background-color: #ffe4b5;
+    color: #8b0000;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -101,14 +108,13 @@ export default {
 }
 
 .menu button:hover {
-    background-color: #8b0000;
-    /* Dark red on hover */
+    background-color: #f5deb3;
     transform: translateY(-2px);
 }
 
 .menu button.active {
     background-color: #8b0000;
-    /* Dark red for active state */
+    color: #ffffff;
     border-radius: 8px;
 }
 

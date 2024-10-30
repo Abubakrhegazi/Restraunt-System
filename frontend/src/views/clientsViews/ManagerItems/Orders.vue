@@ -58,9 +58,8 @@
 export default {
     data() {
         return {
-            selectedDate: new Date().toISOString().substr(0, 10), // Default to today's date
-            selectedStatus: "", // Filter by status
-            // Static orders data for the past week
+            selectedDate: new Date().toISOString().substr(0, 10), 
+            selectedStatus: "", 
             orders: [
                 { id: 1, tableId: 5, customerName: "John Doe", total: "$24.50", items: ["Burger", "Fries"], status: "Ready", time: "2024-10-22T12:30:00" },
                 { id: 2, tableId: 3, customerName: "Jane Smith", total: "$15.00", items: ["Salad", "Water"], status: "Completed", time: "2024-10-22T14:15:00" },
@@ -93,16 +92,15 @@ export default {
     },
     computed: {
         filteredOrders() {
-            // Filter by date and status
             return this.orders
                 .filter(order => {
                     const orderDate = new Date(order.time).toISOString().substr(0, 10);
-                    return orderDate === this.selectedDate; // Date filter
+                    return orderDate === this.selectedDate;
                 })
                 .filter(order => {
-                    return this.selectedStatus ? order.status === this.selectedStatus : true; // Status filter
+                    return this.selectedStatus ? order.status === this.selectedStatus : true; 
                 })
-                .sort((a, b) => new Date(b.time) - new Date(a.time)); // Sort by latest time first
+                .sort((a, b) => new Date(b.time) - new Date(a.time)); 
         },
     },
     methods: {
@@ -113,14 +111,13 @@ export default {
             this.orders = this.orders.filter(order => order.id !== id);
         },
         editOrder(id) {
-            alert(`Editing order ID: ${id}`); // Replace with actual edit functionality
+            alert(`Editing order ID: ${id}`); 
         },
         applyFilters() {
-            // Just calls the computed property
         }
     },
     mounted() {
-        this.applyFilters(); // Load today's orders by default
+        this.applyFilters(); 
     },
 };
 </script>

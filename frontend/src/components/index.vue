@@ -11,11 +11,9 @@
 export default {
   methods: {
     goToCashier() {
-      // Add logic to navigate to the Cashier page
       this.$router.push('/cashier');
     },
     goToLogin() {
-      // Add logic to navigate to the Login page
       this.$router.push('/login');
     },
   },

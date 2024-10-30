@@ -88,7 +88,6 @@ export default {
             selectedStockStatus: '',
             searchQuery: '',
             selectAll: false,
-            // toggleAdd: false,
             meals: [
                 { id: 1, name: 'Soup', inStock: true, price: '$10.00', categories: ['Category 1', 'Category 2'] },
                 { id: 2, name: 'Coffee', inStock: false, price: '$2.30', categories: ['Category 3'] },
@@ -99,7 +98,6 @@ export default {
     },
     computed: {
         filteredMeals() {
-            // Filtering logic for meals
             return this.meals.filter(meal => {
                 let matchesCategory = !this.selectedCategory || meal.categories.includes(this.selectedCategory);
                 let matchesStock = !this.selectedStockStatus || (this.selectedStockStatus === 'inStock' ? meal.inStock : !meal.inStock);
@@ -110,7 +108,6 @@ export default {
     },
     methods: {
         addNewMeal() {
-            // toggleAdd = true;
             alert('Adding...');
 
         },
@@ -126,7 +123,6 @@ export default {
             }
         },
         filterMeals() {
-            // Logic to filter meals based on selected filters
         },
         toggleSelectAll() {
             this.meals.forEach(meal => {
@@ -138,7 +134,6 @@ export default {
 </script>
 
 <style scoped>
-/* Meals Section Styles */
 .meals-section {
     margin: 20px;
     padding: 20px;

@@ -64,13 +64,13 @@ export default {
   components: { NavBar, ManagerBox, SideBar, Meals, Team, Sales, Promotions, Orders, Screens, AddItemTemplate, },
   data() {
     return {
-      selectedSection: '', // Initialize selectedSection
+      selectedSection: '', 
       salesIcon, mealsIcon, teamIcon, screensIcon, promotionsIcon, ordersIcon,
     };
   },
   methods: {
     showSection(section) {
-      this.selectedSection = section; // Update selectedSection based on button click
+      this.selectedSection = section; 
     },
   },
 };
@@ -109,12 +109,9 @@ export default {
 }
 
 .box-container {
-  /* position: relative;
-  bottom: 110px; */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   margin-top: -105px;
-  /* Use negative margin to move it up slightly */
   grid-template-rows: 1fr;
   grid-auto-flow: column;
   gap: 30px;

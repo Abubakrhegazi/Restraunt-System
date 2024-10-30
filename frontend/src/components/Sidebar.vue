@@ -94,12 +94,12 @@ const menuItems = [
 }
 
 .menu button:hover {
-    background-color: #8b0000; /* Dark red on hover */
+    background-color: #8b0000;
     transform: translateY(-2px);
 }
 
 .menu button.active {
-    background-color: #8b0000; /* Dark red for active state */
+    background-color: #8b0000; 
     border-radius: 8px;
 }
 

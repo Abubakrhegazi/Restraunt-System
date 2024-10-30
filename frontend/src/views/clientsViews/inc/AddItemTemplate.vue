@@ -35,7 +35,7 @@ export default {
         return {
             isPopupVisible: false,
             formData: this.fields.reduce((acc, field) => {
-                acc[field] = ""; // Initialize fields with empty values
+                acc[field] = ""; 
                 return acc;
             }, {}),
         };
@@ -48,7 +48,6 @@ export default {
             this.isPopupVisible = false;
         },
         addItem() {
-            // Handle adding the item with formData values
             console.log(`Added ${this.itemType}:`, this.formData);
             this.closePopup();
         },
@@ -60,7 +59,6 @@ export default {
 </script>
 
 <style scoped>
-/* Dark overlay for the popup background */
 * {
     font-family: 'Roboto', 'sans-serif';
 }

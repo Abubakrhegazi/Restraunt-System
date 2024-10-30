@@ -137,15 +137,12 @@ export default {
         fireMember(index) {
             alert(`Fire member: ${this.team[index].name}`);
         },
-        filterTeam() {
-            // No need for logic here since filtering is handled in computed property `filteredTeam`
-        },
+        
     },
 };
 </script>
 
 <style scoped>
-/* Team Section Styles */
 .team-section {
     margin: 20px;
     padding: 20px;
@@ -166,7 +163,6 @@ export default {
     color: white;
 }
 
-/* Filters and Actions */
 .filters,
 .actions {
     display: flex;

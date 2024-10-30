@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         handleClick() {
-            this.$emit('selectSection', this.label); // Emit the label when button is clicked
+            this.$emit('selectSection', this.label); 
         },
     },
 };

@@ -13,7 +13,6 @@
 
 
 <style scoped>
-/* Hero Section */
 .hero {
   padding: 80px 20px;
   text-align: center;

@@ -70,8 +70,6 @@ onUnmounted(() => {
  </script>
   
   <style scoped>
-
-  /* Main container for the header */
   .header .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -86,7 +84,6 @@ onUnmounted(() => {
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* Navigation bar styling */
   .nav {
     display: flex;
     align-items: center;
@@ -95,7 +92,6 @@ onUnmounted(() => {
     padding-top: 30px;
   }
 
-  /* Company name styling */
   .nav h2 {
     font-size: 1.5em;
     margin: 0;
@@ -103,7 +99,6 @@ onUnmounted(() => {
     color: #0c0c0c;
   }
 
-  /* Navigation links styling */
   .nav-links {
     list-style: none;
     display: flex;
@@ -139,10 +134,8 @@ onUnmounted(() => {
 
   .nav-links li a:hover {
     color: #ffffff;
-    /* Lightened red on hover */
   }
 
-  /* Auth links styling */
   .auth {
     display: flex;
     gap: 20px;
@@ -176,14 +169,12 @@ onUnmounted(() => {
     background: #ffffff;
   }
 
-  /* Main container for the header */
   .header .container {
     max-width: 1200px;
     margin: 0 auto;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* When scrolled, update the header */
   .scrolled {
     position: sticky;
     top: 0;
@@ -193,7 +184,6 @@ onUnmounted(() => {
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* Links styling when scrolled */
   .scrolled-links a {
     color: #0c0c0c;
     transition: ease 1s;
@@ -205,7 +195,6 @@ onUnmounted(() => {
     padding: 7px;
   }
 
-  /* Auth styling when scrolled */
   .scrolled-auth-links a {
     color: #0c0c0c;
 
@@ -219,18 +208,15 @@ onUnmounted(() => {
 
 
 
-  /* Prevent content from hiding behind the header */
   body {
     padding-top: 70px;
   }
 
   @media (max-width: 480px) {
-    /* Styles for small mobile devices */
   }
 
   @media (max-width: 600px) {
 
-    /* Styles for mobile devices */
     .nav button {
       display: block;
     }
@@ -267,7 +253,6 @@ onUnmounted(() => {
 
 
   @media (max-width: 768px) {
-    /* Styles for tablets in portrait mode */
   }
 
 </style>
