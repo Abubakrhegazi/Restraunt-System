@@ -16,8 +16,6 @@
 
 <script setup>
 import CustomFeature from './landingPageInnerComponents/CustomFeature.vue';
-
-// Import images
 import allInOneImage from '@/assets/landingPagePhotos/allInOne.png';
 import secure from '@/assets/landingPagePhotos/secure.png';
 import customizable from '@/assets/landingPagePhotos/customizable.png';

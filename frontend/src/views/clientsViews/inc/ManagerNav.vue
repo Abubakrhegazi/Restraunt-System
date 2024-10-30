@@ -23,9 +23,17 @@ export default {
 </script>
 
 <style scoped>
-.name{
+.navbar {
+    background: linear-gradient(90deg, #4caf50, #009688);
+    /* background: linear-gradient(90deg, #8bc34a, #388e3c); */
+    background: linear-gradient(135deg, #f9e8b2, #f1c27d);
+    background: linear-gradient(135deg, #f9e8b2, #e8a958);
+}
+
+.name {
     display: flex;
 }
+
 .logo img {
     width: 100%;
 }
@@ -58,6 +66,7 @@ export default {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .logout-button:hover {

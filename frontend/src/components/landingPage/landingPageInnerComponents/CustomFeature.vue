@@ -25,11 +25,11 @@
 .feature-item h3 {
   font-size: 1.5em;
   margin-bottom: 10px;
-  color: #c9c8c7
+  color: black;
 }
 
 .feature-item p {
   font-size: 1em;
-  color: #c9c8c7
+  color: black;
 }
 </style>

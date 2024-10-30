@@ -18,7 +18,7 @@
         </div>
       </section>
     </main>
-    
+
     <LandingPageFooter />
   </div>
 </template>
@@ -48,6 +48,7 @@ export default {
 /* Landing Page Styles */
 .home {
   background: linear-gradient(to bottom, #8b0000, #0c0c0c);
+  background: linear-gradient(135deg, #f9e8b2, #e8a958);
 
 }
 
@@ -66,6 +67,7 @@ export default {
 
 .cta-section h2 {
   color: #c9c8c7;
+  color: black;
 }
 
 .cta-content {
@@ -81,7 +83,7 @@ export default {
   text-decoration: none;
   border-radius: 30px;
   background-color: #0c0c0c;
-  color: #c9c8c7;
+  color: white;
 }
 
 .cta-section .btn-large:hover {

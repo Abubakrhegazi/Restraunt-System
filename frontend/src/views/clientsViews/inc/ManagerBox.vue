@@ -29,25 +29,23 @@ export default {
     background-color: #fff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2), 0 4px 20px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     width: 165px;
     height: 140px;
     border: none;
-    /* Removes default button border */
     outline: none;
-    /* Removes outline on focus */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .box:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25), 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 .box:active {
     transform: translateY(0);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .box-icon {

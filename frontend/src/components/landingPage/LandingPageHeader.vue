@@ -70,6 +70,7 @@ onUnmounted(() => {
  </script>
   
   <style scoped>
+
   /* Main container for the header */
   .header .container {
     max-width: 1200px;
@@ -78,13 +79,13 @@ onUnmounted(() => {
   }
 
   .scrolled {
-  position: sticky;
-  top: 0;
-  left: 0;
-  background-color: #c9c8c7;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-  
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #f6e1c3;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
   /* Navigation bar styling */
   .nav {
     display: flex;
@@ -93,7 +94,7 @@ onUnmounted(() => {
     padding: 15px 30px;
     padding-top: 30px;
   }
-  
+
   /* Company name styling */
   .nav h2 {
     font-size: 1.5em;
@@ -101,7 +102,7 @@ onUnmounted(() => {
     margin-left: 20px;
     color: #0c0c0c;
   }
-  
+
   /* Navigation links styling */
   .nav-links {
     list-style: none;
@@ -122,32 +123,33 @@ onUnmounted(() => {
     color: #0c0c0c;
   }
 
-  .nav button svg{
+  .nav button svg {
     width: 50px;
     height: 50px;
     display: block;
     flex-shrink: none;
   }
-  
+
   .nav-links li a {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
     color: #0c0c0c;
   }
-  
+
   .nav-links li a:hover {
-    color: #c9c8c7; /* Lightened red on hover */
+    color: #ffffff;
+    /* Lightened red on hover */
   }
-  
+
   /* Auth links styling */
   .auth {
     display: flex;
     gap: 20px;
     margin-left: 20px;
   }
-  
-  .auth a{
+
+  .auth a {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -158,107 +160,115 @@ onUnmounted(() => {
     color: #0c0c0c;
   }
 
-  .auth a:first-child{
-    color: #c9c8c7;
+  .auth a:first-child {
+    color: white;
     background: #0c0c0c;
   }
-  
+
   .auth a:hover {
-    color: #c9c8c7;
+    color: #ffffff;
+    color: black;
+
   }
 
   .auth a:first-child:hover {
-    color: #0c0c0c;
-    background: #c9c8c7;
+    color: black;
+    background: #ffffff;
   }
 
   /* Main container for the header */
-.header .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+  .header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-/* When scrolled, update the header */
-.scrolled {
-  position: sticky;
-  top: 0;
-  left: 0;
-  background-color: #c9c8c7;
-  color: white;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+  /* When scrolled, update the header */
+  .scrolled {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #f6e1c3;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-/* Links styling when scrolled */
-.scrolled-links a {
-  color: #0c0c0c;
-  transition: ease 1s;
-}
+  /* Links styling when scrolled */
+  .scrolled-links a {
+    color: #0c0c0c;
+    transition: ease 1s;
+  }
 
-.scrolled-links a:hover {
-  background: #0c0c0c;
-  border-radius: 30px;
-  padding: 7px;
-}
+  .scrolled-links a:hover {
+    background: #0c0c0c;
+    border-radius: 30px;
+    padding: 7px;
+  }
 
-/* Auth styling when scrolled */
-.scrolled-auth-links a {
-  color: #0c0c0c;
-}
+  /* Auth styling when scrolled */
+  .scrolled-auth-links a {
+    color: #0c0c0c;
 
-.scrolled-auth-links a:hover {
-  color: #c9c8c7;
-  background: #0c0c0c;
-}
- 
+  }
 
-  
-  
+  .scrolled-auth-links a:hover {
+    color: #c9c8c7;
+    background: #0c0c0c;
+  }
+
+
+
+
   /* Prevent content from hiding behind the header */
   body {
     padding-top: 70px;
   }
 
   @media (max-width: 480px) {
-  /* Styles for small mobile devices */
-}
+    /* Styles for small mobile devices */
+  }
 
-@media (max-width: 600px) {
-  /* Styles for mobile devices */
-    .nav button{
-        display: block;
+  @media (max-width: 600px) {
+
+    /* Styles for mobile devices */
+    .nav button {
+      display: block;
     }
 
-   .nav,.nav ul{
-    flex-direction: column;
-   }
+    .nav,
+    .nav ul {
+      flex-direction: column;
+    }
 
-   .nav ul{
-    flex-direction: column;
-    transition: ease 0.5s;
-   }
+    .nav ul {
+      flex-direction: column;
+      transition: ease 0.5s;
+    }
 
-   .nav h2{
-    margin-top: 20px;
-   }
-   .nav h2, .nav ul{
-    margin-bottom: 20px;
-   }
+    .nav h2 {
+      margin-top: 20px;
+    }
 
-   .nav .auth{
-    margin-top: 30px;
-   }
-   .scrolled {
-    display: block;
-    padding: 15px 30px;
-    padding-top: 30px;
+    .nav h2,
+    .nav ul {
+      margin-bottom: 20px;
+    }
+
+    .nav .auth {
+      margin-top: 30px;
+    }
+
+    .scrolled {
+      display: block;
+      padding: 15px 30px;
+      padding-top: 30px;
+    }
   }
-}
 
 
-@media (max-width: 768px) {
-      /* Styles for tablets in portrait mode */
-}
+  @media (max-width: 768px) {
+    /* Styles for tablets in portrait mode */
+  }
 
-  </style>
+</style>
   
