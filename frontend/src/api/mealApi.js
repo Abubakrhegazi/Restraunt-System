@@ -1,3 +1,5 @@
+import { Get, Delete } from "./main";
+
 export async function getMealsByResturantId(id) {
     const response = await fetch(`http://localhost/resturant-software/backend/src/controllers/MealController.php?action=getAllMealsByResturantId&resturant_id=${id}`, {
         method: 'GET',
@@ -11,19 +13,72 @@ export async function getMealsByResturantId(id) {
 }
 
 export async function deleteMeals(name,id) {
-    const response = await fetch(`http://localhost/resturant-software/backend/src/controllers/MealController.php?`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            action: 'addUser',
+    const data = await Delete('http://localhost/resturant-software/backend/src/controllers/MealController.php',
+        {
+            action:'deleteMealByMealNameAndRsturantId',
             name,
-            id,
-        }),
-    });
+            id
+        })
 
-    const data = await response.json();
     return data;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const response = await fetch(`http://localhost/resturant-software/backend/src/controllers/MealController.php?`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //         action: 'deleteMealByMealNameAndRsturantId',
+    //         id,
+    //         name,
+    //     }),
+    // });

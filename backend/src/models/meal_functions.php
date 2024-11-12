@@ -21,9 +21,8 @@ function getAllMealsByResturantId($resturantId)
 
 function deleteMealByMealNameAndRsturantId($name,$id){
     global $con;
-    $sql = "DELETE FROM meals WHERE meal_name = ? and meal_id = ? ";
+    $sql = "DELETE FROM meals WHERE name = ? and resturant_id = ? ";
     $stmt = mysqli_prepare($con, $sql);
     mysqli_stmt_bind_param($stmt, "si", $name, $id); // "i" means integer
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_stmt_execute($stmt) ? true : false;
 }

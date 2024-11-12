@@ -75,8 +75,8 @@ if($action){
         //     break;
 
         case 'deleteMealByMealNameAndRsturantId':
-            $id = $_POST['id'] ?? '';
-            $id = $_POST['name'] ?? '';
+            $id = $_GET['id'] ?? '';
+            $name = $_GET['name'] ?? '';
 
 
             if (deleteMealByMealNameAndRsturantId($name,$id)) {
@@ -91,6 +91,6 @@ if($action){
             break;
     }
 } else {
-    echo json_encode(["status" => "error", "message" => "No action specified."]);
+    echo json_encode(["status" => "error", "message" => "No action specified Controller."]);
 }
 ?>

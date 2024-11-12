@@ -53,6 +53,6 @@ if ($action) {
             break;
     }
 } else {
-    echo json_encode(["status" => "error", "message" => "No action specified."]);
+    echo json_encode(["status" => "error", "message" => "No action specified Controller."]);
 }
 ?>

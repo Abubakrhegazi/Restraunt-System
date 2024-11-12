@@ -116,7 +116,7 @@ const submitForm = () => {
   border-radius: 20px;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   max-width: 400px;
-  max-height: 560px;
+  min-height: 560px;
   width: 100%;
 }
 

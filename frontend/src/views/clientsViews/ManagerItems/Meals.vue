@@ -117,9 +117,12 @@ export default {
         applyBulkAction() {
             if (this.selectedBulkAction === 'delete') {
                 console.log(this.meals)
-                this.meals.forEach(async (meal) => {
+                let deletedMeals = this.meals.filter(meal => meal.selected);
+                deletedMeals.forEach(async (meal) => {
+                    console.log(meal)
                     console.log(meal.name,meal.id);
-                    await deleteMeals(meal.name, meal.meal_id); // Await each deleteMeals call
+                    const response = await deleteMeals(meal.name, meal.meal_id); // Await each deleteMeals call
+                    console.log(response);
                 });
                 this.meals = this.meals.filter(meal => !meal.selected);
             }
