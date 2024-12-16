@@ -1,7 +1,9 @@
 import { Get, Delete } from "./main";
 
+const URL = 'http://localhost/resturant-software/backend/src/controllers/MealController.php'
+
 export async function getMealsByResturantId(id) {
-    const response = await fetch(`http://localhost/resturant-software/backend/src/controllers/MealController.php?action=getAllMealsByResturantId&resturant_id=${id}`, {
+    const response = await fetch(`${URL}?action=getAllMealsByResturantId&resturant_id=${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -13,7 +15,7 @@ export async function getMealsByResturantId(id) {
 }
 
 export async function deleteMeals(name,id) {
-    const data = await Delete('http://localhost/resturant-software/backend/src/controllers/MealController.php',
+    const data = await Delete(`${URL}`,
         {
             action:'deleteMealByMealNameAndRsturantId',
             name,
