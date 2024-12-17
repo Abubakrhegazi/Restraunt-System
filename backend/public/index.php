@@ -3,7 +3,7 @@ $module = $_GET['module'] ?? null;
 
 switch ($module) {
     case 'user':
-        include 'controllers/UserController.php';
+        include 'controller/userIndex.php';
         break;
     case 'menu':
         include 'controllers/menuController.php';
