@@ -38,9 +38,9 @@ class Db{
 		$this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 		if ($this->conn->connect_error) {
 
-			throw new Exception("Connection failed: " . $this->conn->connect_error);
+			throw new Exception("Connection failed: " . $this->conn->connect_error . "<br>");
 		}
-		echo "connected";
+		//echo "connected<br>";
 		return $this->conn;
 	}
 
@@ -56,7 +56,7 @@ class Db{
 			return $this->result;
 		}
 		else{
-			echo "sql is empty";
+			echo "sql is empty<br>";
 			return false;
 		}
 	}
@@ -64,6 +64,9 @@ class Db{
 	function fetchRow($result=""){
 		if (empty($result)){ 
 			$result = $this->result; 
+		}
+		if(!$result && !$this->result){
+			return false;
 		}
 		return $result->fetch_assoc();
 	}

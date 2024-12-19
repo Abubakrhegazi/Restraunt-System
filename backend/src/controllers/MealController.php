@@ -1,12 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:8080"); // Allow requests from your front-end origin
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");    // Allow the request methods you use
-header("Access-Control-Allow-Headers: Content-Type");          // Allow the headers you need
-header("Access-Control-Allow-Credentials: true");              // If cookies or authentication are required
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header('Content-Type: application/json'); // Set content type to JSON
+
 
 require_once '../models/meal_functions.php';  // Assuming this file contains meal-related DB functions
 

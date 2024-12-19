@@ -22,7 +22,7 @@ abstract class User extends Model
         $phone_number=null,
         $profile_picture=null
     ) {
-        if($user_id){
+        if(null !== $user_id){
             $this->readUser($user_id);
           }else{
             $this->name = $name;
@@ -38,9 +38,10 @@ abstract class User extends Model
 
     function readUser($id)
     {
-        $sql = "SELECT * FROM user where ID=" . $id;
+        $sql = "SELECT * FROM user where user_id=" . $id;
         $db = $this->connect();
         $result = $db->query($sql);
+        
 
         if ($result) {
 
@@ -51,13 +52,13 @@ abstract class User extends Model
             $this->email = $row["email"];
             $this->password = $row["password"];
             $this->user_id = $row["user_id"];
-            $this->restaurant_id = $row["resturant_id"];
-            $this->branch_id = $row["branch_id"];
-            $this->phone_number = $row["phone_Number"];
-            $this->profile_picture = $row["profile_picture"];
-            $this->hourly_rate = $this->hourly_rate ?? $row["hourly_rate"];
+            $this->restaurant_id = $row["resturant_id"]??null;
+            $this->branch_id = $row["branch_id"]??null;
+            $this->phone_number = $row["phone_number"];
+            $this->profile_picture = $row["profile_picture"]??null;
+            $this->hourly_rate = $this->hourly_rate ?? $row["hourly_rate"]??null;
         } else {
-            echo "user doesn't exist";
+            echo "user doesn't exist<br>";
         }
     }
 
@@ -74,7 +75,7 @@ abstract class User extends Model
 
         $sql = "UPDATE user SET name = '$name', password = '$password',
                 phone_number = '$phone_number', profile_picture = '$profile_picture', 
-                hourly_rate = $hourly_rate, type_id = $type_id WHERE ID = $this->user_id";
+                hourly_rate = $hourly_rate, type_id = $type_id WHERE user_id = $this->user_id";
 
         if ($db->query($sql) === true) {
             echo "updated successfully.";
@@ -86,7 +87,7 @@ abstract class User extends Model
 
     function deleteUser()
     {
-        $sql = "delete from user where id=$this->user_id";
+        $sql = "delete from user where user_id=$this->user_id";
 
         $db = $this->connect();
 

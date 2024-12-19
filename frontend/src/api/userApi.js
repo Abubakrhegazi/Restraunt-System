@@ -1,16 +1,25 @@
 import { Post } from "./main";
 
 export default async function createUser(userData) {
-    const data = await Post('http://localhost/resturant-software/backend/src/controllers/UserController.php',
-
-        {
-            action: 'addUser',
+    try {
+        const response = await Post('http://localhost/resturant-software/backend/public/index.php', 
+        { 
             ...userData
-        }
-    );
+        },
+        {
+            headers: {'Content-Type': 'application/json'},
 
-    
-    return data;
+            params: {
+                module:'user',
+                action: 'insert',
+            }
+        });
+
+        return response;
+    } catch (error) {
+        console.error('Error:', error);
+        return { status: 'error', message: 'An error occurred' };
+    }
 }
 
 

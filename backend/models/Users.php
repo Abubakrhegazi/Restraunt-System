@@ -40,17 +40,18 @@ class Users extends Model {
 		}
 	}
 
-	function insertUser($name, $email, $password, $phone){
-		$sql = "INSERT INTO user (name, email, password, phone_number) VALUES ('$name', '$email', '$password', '$phone')";
+	function insertUser($name, $email, $password, $phone, $type_id){
+		$sql = "INSERT INTO user (name, email, password, phone_number, type_id) VALUES ('$name', '$email', '$password', '$phone', '$type_id')";
 
         $db = $this->connect();
 
 		if($db->query($sql) === true){
-			echo "Records inserted successfully.";
+			echo "Records inserted successfully.<br>";
 			$this->fillArray();
+			return true;
 		} 
 		else{
-			echo "ERROR: Could not able to execute $sql. " . $this->conn->error;
+			echo "ERROR: Could not able to execute $sql. " . $this->conn->error . "<br>";
 		}
 	}
 }

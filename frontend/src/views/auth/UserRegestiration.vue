@@ -217,10 +217,12 @@ const submitForm = async () => {
     name: `${firstName.value} ${lastName.value}`,
     email: email.value,
     password: password.value,
-    role:  'owner',
-    phoneNumber: phoneNumber.value
+    phone_number: phoneNumber.value,
+    type_id: 1
 
 };
+
+
 
   const response = await createUser(userData);
 
@@ -228,7 +230,7 @@ if (response.status === "success") {
   console.log('Registration Successful');
   router.push('/login');
 } else {
-  console.error(response.message);
+  console.error(response);
 }
 };
 
