@@ -37,8 +37,8 @@ class Db{
 
 		$this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 		if ($this->conn->connect_error) {
-
-			throw new Exception("Connection failed: " . $this->conn->connect_error . "<br>");
+			
+			throw new Exception($this->conn->connect_error);
 		}
 		//echo "connected<br>";
 		return $this->conn;
@@ -56,7 +56,7 @@ class Db{
 			return $this->result;
 		}
 		else{
-			echo "sql is empty<br>";
+			echo "sql is empty";
 			return false;
 		}
 	}

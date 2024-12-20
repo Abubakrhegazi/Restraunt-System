@@ -39,7 +39,7 @@
             </div>
           </div>
           <CustomInput name="phoneNumber" type="text" v-model="phoneNumber" placeholder="phone number" :error="phoneNumberError"/>
-          <CustomInput name="password" type="password" v-model="password" placeholder="password" />
+          <CustomInput name="password" type="password" v-model="password" placeholder="password" :error="passwordError.passwordExsists"/>
 
           <!-- Password validation feedback -->
           <div class="validation">
@@ -106,7 +106,8 @@ const phoneNumberError = ref('');
 const passwordError = ref({
   noLetter: -1,
   noNumberOrSpecialChar: -1,
-  lessThan8: -1
+  lessThan8: -1,
+  passwordExsists: ''
 });
 const terms = ref(true)
 const step = ref(1);
@@ -133,7 +134,7 @@ const validatePassword = () => {
   };
 };
 
-const validateNumber = () => {
+const validateNumber =  () => {
   const phone = phoneNumber.value;
   const isNumeric = /^\d+$/.test(phone); 
 
@@ -154,7 +155,7 @@ const validateNumber = () => {
 
 watch(password, validatePassword);
 
-const nextOnClick = () => {
+const nextOnClick = async () => {
   emailError.value = '';
 
   if (!email.value) {
@@ -165,6 +166,13 @@ const nextOnClick = () => {
     emailError.value = 'Invalid email address.';
     return;
   }
+
+  const response = await createUser({email: email.value})
+  if (response.error === 'email error') {
+    emailError.value = 'Email already exists.';
+    return; 
+  }
+
   step.value++;
 };
 
@@ -175,7 +183,7 @@ const onClickBack = () => {
 
 
 const submitForm = async () => {
-  nameError.value.firstName = nameError.value.lastName = ''
+  nameError.value.firstName = nameError.value.lastName = passwordError.value.passwordExsists = ''
   
 
   // Check password requirements
@@ -230,6 +238,7 @@ if (response.status === "success") {
   console.log('Registration Successful');
   router.push('/login');
 } else {
+  passwordError.value.passwordExsists = "Password Already exsists."
   console.error(response);
 }
 };

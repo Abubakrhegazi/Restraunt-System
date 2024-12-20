@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2024 at 11:03 PM
+-- Generation Time: Dec 20, 2024 at 09:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -124,17 +124,25 @@ CREATE TABLE `template` (
 --
 
 CREATE TABLE `user` (
-  `restaurant_id` int(11) NOT NULL,
-  `branch_id` int(11) NOT NULL,
+  `restaurant_id` int(11) DEFAULT NULL,
+  `branch_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `user_id` int(11) NOT NULL,
   `phone_number` varchar(16) NOT NULL,
-  `profile_picture` varchar(255) NOT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
   `hourly_rate` decimal(10,2) DEFAULT NULL,
   `type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`restaurant_id`, `branch_id`, `name`, `email`, `password`, `user_id`, `phone_number`, `profile_picture`, `hourly_rate`, `type_id`) VALUES
+(NULL, NULL, 'ahmed samer', 'ahmedsamersayed22@gmail.com', '01090790791a', 7, '01020127700', NULL, NULL, 1),
+(NULL, NULL, 'ahmed samer', 'ahmedsamersayed2@gmail.com', '01090790791a', 9, '01020127700', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -146,6 +154,16 @@ CREATE TABLE `user_type` (
   `type_id` int(11) NOT NULL,
   `type_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_type`
+--
+
+INSERT INTO `user_type` (`type_id`, `type_name`) VALUES
+(1, 'owner'),
+(2, 'manager'),
+(3, 'cashier'),
+(4, 'other');
 
 --
 -- Indexes for dumped tables
@@ -204,7 +222,7 @@ ALTER TABLE `template`
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `password` (`password`),
+  ADD KEY `password` (`password`),
   ADD KEY `restaurant_id` (`restaurant_id`,`branch_id`),
   ADD KEY `type_id` (`type_id`);
 
@@ -252,7 +270,7 @@ ALTER TABLE `template`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

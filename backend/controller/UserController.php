@@ -10,6 +10,11 @@ class UsersController extends Controller{
             $phone = $_POST['phone_number'] ?? null;
 			$type_id = $_POST['type_id'] ?? null;
 
+			if($email){
+				if ($this->model->insertUser($name, $email, $password, $phone, $type_id) === "email"){
+					return "email";
+				}
+			}
             if ($name && $email && $password && $phone) {
                 if($this->model->insertUser($name, $email, $password, $phone, $type_id)){
 					return true;
@@ -18,7 +23,7 @@ class UsersController extends Controller{
 					return false;
 				}
             } else {
-                echo "Missing data for insertion.";
+            	return json_encode(["error" => "Missing data for insertion."]);
             }
 	}
 
@@ -33,6 +38,14 @@ class UsersController extends Controller{
 	
 	public function delete(){
 		$this->model->deleteUser();
+	}
+
+	public function getAll(){
+		if(false === $this->model->getAllUsers()){
+			return false;
+		}
+		ob_end_clean();
+		return json_encode($this->model->getAllUsers());
 	}
 }
 ?>

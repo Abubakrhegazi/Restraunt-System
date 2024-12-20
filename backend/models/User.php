@@ -23,7 +23,9 @@ abstract class User extends Model
         $profile_picture=null
     ) {
         if(null !== $user_id){
-            $this->readUser($user_id);
+            $this->readUser(null,null,$user_id);
+          }elseif(null !== $email && null !== $password){
+            $this->readUser($email, $password);
           }else{
             $this->name = $name;
             $this->email = $email;
@@ -34,11 +36,21 @@ abstract class User extends Model
             $this->phone_number = $phone_number;
             $this->profile_picture = $profile_picture;
           }
+
+          ob_end_clean();
+          //$this->toJson();
     }
 
-    function readUser($id)
+    function readUser($name=null,$email=null,$id=null)
     {
-        $sql = "SELECT * FROM user where user_id=" . $id;
+        if($id){
+
+            $sql = "SELECT * FROM user where user_id=" . $id;
+
+        }elseif($name && $email){
+
+            $sql = "SELECT * FROM user where name=$name AND email=$email";
+        }
         $db = $this->connect();
         $result = $db->query($sql);
         
@@ -57,8 +69,9 @@ abstract class User extends Model
             $this->phone_number = $row["phone_number"];
             $this->profile_picture = $row["profile_picture"]??null;
             $this->hourly_rate = $this->hourly_rate ?? $row["hourly_rate"]??null;
+
         } else {
-            echo "user doesn't exist<br>";
+            echo "user doesn't exist";
         }
     }
 
@@ -77,7 +90,7 @@ abstract class User extends Model
                 phone_number = '$phone_number', profile_picture = '$profile_picture', 
                 hourly_rate = $hourly_rate, type_id = $type_id WHERE user_id = $this->user_id";
 
-        if ($db->query($sql) === true) {
+        if (true === $db->query($sql)) {
             echo "updated successfully.";
             $this->readUser($this->user_id);
         } else {
@@ -99,6 +112,17 @@ abstract class User extends Model
         }
     }
 
+    public function toJson() {
+        echo json_encode([
+            'name' => $this->name,
+            'email' => $this->email,
+            'user_id' => $this->user_id,
+            'restaurant_id' => $this->restaurant_id,
+            'branch_id' => $this->branch_id,
+            'phone_number' => $this->phone_number,
+            'profile_picture' => $this->profile_picture,
+        ]);
+    }
     abstract public function getRole(): int;
 }
 

@@ -11,7 +11,6 @@
 
 
 
-
     switch($_REQUEST['module']) {
         case 'user':
             require ('userIndex.php');

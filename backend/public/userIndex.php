@@ -11,21 +11,37 @@ header('Content-Type: application/json'); // Set content type to JSON
 
 // Instantiate the Users class
 $Users = new Users();
-$controller = new UsersController($Users);
+$userController = new UsersController($Users);
 
 if (isset($_REQUEST['action'])) {
     switch ($_REQUEST['action']) {
         case 'insert':
+            $result = $userController->insert();
+            if ($result) {
 
-            if ($controller->insert()) {
-                ob_end_clean(); //clean the buffer so the response is just the json message
-                echo json_encode(["status" => "success", "message" => "user inserted successfully."]);
-            } else {
+                if($result === "email") {
+
+                    echo json_encode(["error" => "email error"]) ;
+
+                }else{
+
+                    echo json_encode(["status" => "success", "message" => "user inserted successfully."]);
+                }   
+            }
+             else {
+                
                 echo json_encode(["status" => "error", "message" => "Failed to insert user."]);
+                echo $result;
+
             }
 			break;
-        case 'working':
-            echo 'working function called <br>';
+        case 'getAllUsers':
+
+            $userController->getAll();
+            break;
+        
+        case 'getUserById':
+            //$userController->getUserById();
             break;
         default:
             echo "Action not recognized.";
